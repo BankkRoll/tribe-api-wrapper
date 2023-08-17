@@ -2,6 +2,7 @@
 import axios, { AxiosError } from 'axios';
 import { LeaderboardResponse, ClientListResponse, PublicClientUserListResponse, LeaderboardOptions } from './types';
 export * from './types';
+export { Leaderboard } from './Leaderboard';
 
 /** Base URLs for the API endpoints */
 const BASE_URL = 'https://leaderboard.tribenft.co/leaderboard-ranking/?client=';
@@ -25,24 +26,45 @@ class ApiError extends Error {
 }
 
 /**
+ * Constructs the URL based on the useProxy option and endpoint.
+ * @param endpoint The endpoint URL.
+ * @param client The client ID (string).
+ * @param options An optional object containing additional parameters.
+ * @param useProxy An optional boolean to determine whether to use the Next.js API route.
+ * @returns A URL string.
+ */
+const buildUrl = (
+  endpoint: string,
+  client: string,
+  options?: LeaderboardOptions,
+  useProxy?: boolean
+): string => {
+  const { timePeriod = 'all', trial = true, badgeFilter = false } = options || {};
+
+  return useProxy
+    ? `/api/${endpoint}?client=${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}&time_period=${timePeriod}`
+    : `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}${
+        timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''
+      }`;
+};
+
+/**
  * Fetches the leaderboard data for the given client.
  * @param client The client ID (string).
  * @param options An optional object containing additional parameters.
+ * @param useProxy An optional boolean to determine whether to use the Next.js API route.
  * @returns A promise that resolves to the leaderboard data or an error.
  */
 export const getLeaderboard = async (
   client: string,
-  options?: LeaderboardOptions
+  options?: LeaderboardOptions,
+  useProxy?: boolean
 ): Promise<LeaderboardResponse | Error> => {
   if (!client) {
     return new ValidationError('Client parameter is required.');
   }
 
-  const { timePeriod = 'all', trial = true, badgeFilter = false } = options || {};
-
-  const url = `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}${
-    timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''
-  }`;
+  const url = buildUrl('leaderboard-ranking', client, options, useProxy);
 
   try {
     const response = await axios.get<LeaderboardResponse>(url);
@@ -56,9 +78,11 @@ export const getLeaderboard = async (
  * Fetches the list of clients.
  * @returns A promise that resolves to the client list or an error.
  */
-export const getClientList = async (): Promise<ClientListResponse | Error> => {
+export const getClientList = async (useProxy?: boolean): Promise<ClientListResponse | Error> => {
+  const url = useProxy ? '/api/client-list' : CLIENT_LIST_URL;
+
   try {
-    const response = await axios.get<ClientListResponse>(CLIENT_LIST_URL);
+    const response = await axios.get<ClientListResponse>(url);
     return response.data;
   } catch (error) {
     return handleError(error);
@@ -69,22 +93,20 @@ export const getClientList = async (): Promise<ClientListResponse | Error> => {
  * Fetches the public client user list for the given client.
  * @param client The client ID (string).
  * @param options An optional object containing additional parameters.
+ * @param useProxy An optional boolean to determine whether to use the Next.js API route.
  * @returns A promise that resolves to the public client user list or an error.
  */
 export const getPublicClientUserList = async (
     client: string,
-    options?: { timePeriod?: string; badgeFilter?: boolean }
+    options?: LeaderboardOptions, // Change the type to match LeaderboardOptions
+    useProxy?: boolean
   ): Promise<PublicClientUserListResponse | Error> => {
     if (!client) {
       return new ValidationError('Client parameter is required.');
     }
-
-    const { timePeriod = 'all', badgeFilter = false } = options || {};
-
-    const url = `${PUBLIC_CLIENT_USER_LIST_URL}${encodeURIComponent(client)}${
-      timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''
-    }&badge_filter=${badgeFilter}`;
-
+  
+    const url = buildUrl('public-client-user-list', client, options, useProxy);
+  
     try {
       const response = await axios.get<PublicClientUserListResponse>(url);
       return response.data;
@@ -92,6 +114,7 @@ export const getPublicClientUserList = async (
       return handleError(error);
     }
   };
+  
 
 /**
  * Error handling function for API errors.

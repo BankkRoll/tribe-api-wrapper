@@ -17,10 +17,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPublicClientUserList = exports.getClientList = exports.getLeaderboard = void 0;
+exports.getPublicClientUserList = exports.getClientList = exports.getLeaderboard = exports.Leaderboard = void 0;
 // index.ts
 const axios_1 = __importDefault(require("axios"));
 __exportStar(require("./types"), exports);
+var Leaderboard_1 = require("./Leaderboard");
+Object.defineProperty(exports, "Leaderboard", { enumerable: true, get: function () { return Leaderboard_1.Leaderboard; } });
 /** Base URLs for the API endpoints */
 const BASE_URL = 'https://leaderboard.tribenft.co/leaderboard-ranking/?client=';
 const CLIENT_LIST_URL = 'https://leaderboard.tribenft.co/client-list/';
@@ -40,17 +42,31 @@ class ApiError extends Error {
     }
 }
 /**
+ * Constructs the URL based on the useProxy option and endpoint.
+ * @param endpoint The endpoint URL.
+ * @param client The client ID (string).
+ * @param options An optional object containing additional parameters.
+ * @param useProxy An optional boolean to determine whether to use the Next.js API route.
+ * @returns A URL string.
+ */
+const buildUrl = (endpoint, client, options, useProxy) => {
+    const { timePeriod = 'all', trial = true, badgeFilter = false } = options || {};
+    return useProxy
+        ? `/api/${endpoint}?client=${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}&time_period=${timePeriod}`
+        : `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}${timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''}`;
+};
+/**
  * Fetches the leaderboard data for the given client.
  * @param client The client ID (string).
  * @param options An optional object containing additional parameters.
+ * @param useProxy An optional boolean to determine whether to use the Next.js API route.
  * @returns A promise that resolves to the leaderboard data or an error.
  */
-const getLeaderboard = async (client, options) => {
+const getLeaderboard = async (client, options, useProxy) => {
     if (!client) {
         return new ValidationError('Client parameter is required.');
     }
-    const { timePeriod = 'all', trial = true, badgeFilter = false } = options || {};
-    const url = `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}${timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''}`;
+    const url = buildUrl('leaderboard-ranking', client, options, useProxy);
     try {
         const response = await axios_1.default.get(url);
         return response.data;
@@ -64,9 +80,10 @@ exports.getLeaderboard = getLeaderboard;
  * Fetches the list of clients.
  * @returns A promise that resolves to the client list or an error.
  */
-const getClientList = async () => {
+const getClientList = async (useProxy) => {
+    const url = useProxy ? '/api/client-list' : CLIENT_LIST_URL;
     try {
-        const response = await axios_1.default.get(CLIENT_LIST_URL);
+        const response = await axios_1.default.get(url);
         return response.data;
     }
     catch (error) {
@@ -78,14 +95,15 @@ exports.getClientList = getClientList;
  * Fetches the public client user list for the given client.
  * @param client The client ID (string).
  * @param options An optional object containing additional parameters.
+ * @param useProxy An optional boolean to determine whether to use the Next.js API route.
  * @returns A promise that resolves to the public client user list or an error.
  */
-const getPublicClientUserList = async (client, options) => {
+const getPublicClientUserList = async (client, options, // Change the type to match LeaderboardOptions
+useProxy) => {
     if (!client) {
         return new ValidationError('Client parameter is required.');
     }
-    const { timePeriod = 'all', badgeFilter = false } = options || {};
-    const url = `${PUBLIC_CLIENT_USER_LIST_URL}${encodeURIComponent(client)}${timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''}&badge_filter=${badgeFilter}`;
+    const url = buildUrl('public-client-user-list', client, options, useProxy);
     try {
         const response = await axios_1.default.get(url);
         return response.data;

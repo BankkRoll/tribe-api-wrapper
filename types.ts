@@ -24,7 +24,7 @@ export interface LeaderboardProps extends LeaderboardOptions {
     userClassName?: string;
     style?: React.CSSProperties;
   }
-
+  
 
 /** Response format for the leaderboard API */
 export interface LeaderboardResponse {
