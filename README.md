@@ -1,4 +1,5 @@
 # tribe-api-wrapper
+[![npm version](https://badge.fury.io/js/tribe-api-wrapper.svg)](https://www.npmjs.com/package/tribe-api-wrapper)
 
 This library is designed to offer an accessible and efficient way to retrieve and manage data from the Leaderboard API. It encompasses a React component for visualizing leaderboards and a set of functions that facilitate various interactions with the API endpoints. Together, these features empower developers to create engaging experiences around leaderboards.
 
