@@ -1,5 +1,5 @@
 # tribe-api-wrapper
-![npm](https://img.shields.io/npm/v/tribe-api-wrapper)
+[![npm](https://img.shields.io/npm/v/tribe-api-wrapper)](https://www.npmjs.com/package/tribe-api-wrapper)
 ![npm](https://img.shields.io/npm/dt/tribe-api-wrapper)
 ![NPM](https://img.shields.io/npm/l/tribe-api-wrapper)
 ![GitHub issues](https://img.shields.io/github/issues/BankkRoll/tribe-api-wrapper)
