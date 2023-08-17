@@ -1,0 +1,29 @@
+{
+  "name": "tribe-api-wrapper",
+  "version": "1.0.0",
+  "description": "Custom wrapper for tribe tracking",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "keywords": ["leaderboard", "API wrapper", "React", "Twitter", "tribe", "tracking", "tracking API", "tracking API wrapper"],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BankkRoll/tribe-api-wrapper.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BankkRoll/tribe-api-wrapper/issues"
+  },
+  "homepage": "https://github.com/BankkRoll/tribe-api-wrapper#readme",
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "npm run build",
+    "format": "prettier --write 'src/**/*.{ts,tsx}'",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "bankkroll",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^1.4.0",
+    "react": "^18.2.0",
+    "prettier": "^2.4.1"
+  }
+}
