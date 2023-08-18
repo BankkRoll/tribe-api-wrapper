@@ -49,6 +49,14 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
     fetchData();
   }, [client, timePeriod, trial, badgeFilter]);
 
+  /** 
+   * Check if leaderboardData.data is an array before mapping
+   */
+  if (leaderboardData && !Array.isArray(leaderboardData.data)) {
+    setError("Invalid client ID or unexpected response format");
+    return null;
+  }
+
   /**
    * Render the leaderboard component.
    * Displays a loading message while the data is being fetched.

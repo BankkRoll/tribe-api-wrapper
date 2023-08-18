@@ -110,14 +110,14 @@ export const getPublicClientUserList = async (
 const handleError = (error: unknown): Error => {
   const axiosError = error as AxiosError<ErrorResponse>;
 
-  // Check if the error message is "invalid client_name" and handle it
+  // Check for specific error response related to client ID
   if (
     axiosError.response &&
     axiosError.response.data &&
     axiosError.response.data.data &&
     axiosError.response.data.data.error === 'invalid client_name'
   ) {
-    return new ApiError('Invalid client ID provided.');
+    return new ApiError('Wrong client ID provided.');
   }
 
   if (axiosError.response) {
@@ -126,4 +126,3 @@ const handleError = (error: unknown): Error => {
     return new ApiError(axiosError.message);
   }
 };
-
