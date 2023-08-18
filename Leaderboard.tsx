@@ -52,10 +52,13 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   /** 
    * Check if leaderboardData.data is an array before mapping
    */
-  if (leaderboardData && !Array.isArray(leaderboardData.data)) {
-    setError("Invalid client ID or unexpected response format");
-    return null;
-  }
+  useEffect(() => {
+    // Check if leaderboardData.data is an array before mapping
+    if (leaderboardData && !Array.isArray(leaderboardData.data)) {
+      setError("Invalid client ID or unexpected response format");
+    }
+  }, [leaderboardData]);
+  
 
   /**
    * Render the leaderboard component.

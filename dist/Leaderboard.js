@@ -60,10 +60,12 @@ const Leaderboard = ({ client, timePeriod = 'all', trial, badgeFilter, className
     /**
      * Check if leaderboardData.data is an array before mapping
      */
-    if (leaderboardData && !Array.isArray(leaderboardData.data)) {
-        setError("Invalid client ID or unexpected response format");
-        return null;
-    }
+    (0, react_1.useEffect)(() => {
+        // Check if leaderboardData.data is an array before mapping
+        if (leaderboardData && !Array.isArray(leaderboardData.data)) {
+            setError("Invalid client ID or unexpected response format");
+        }
+    }, [leaderboardData]);
     /**
      * Render the leaderboard component.
      * Displays a loading message while the data is being fetched.
