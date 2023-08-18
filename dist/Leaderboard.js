@@ -74,7 +74,7 @@ const Leaderboard = ({ client, timePeriod = 'all', trial, badgeFilter, className
      */
     return (react_1.default.createElement("div", { className: className, style: style }, error ? (react_1.default.createElement("div", { className: `${errorClassName} ${textClassName}` },
         "Error: ",
-        error)) : leaderboardData ? (react_1.default.createElement("table", { className: tableClassName },
+        error)) : leaderboardData && Array.isArray(leaderboardData.data) ? (react_1.default.createElement("table", { className: tableClassName },
         react_1.default.createElement("thead", { className: headerClassName },
             react_1.default.createElement("tr", null,
                 react_1.default.createElement("th", { className: titleClassName }, "Member"),

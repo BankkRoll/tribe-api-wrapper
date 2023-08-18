@@ -70,7 +70,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
     <div className={className} style={style}>
       {error ? (
         <div className={`${errorClassName} ${textClassName}`}>Error: {error}</div>
-      ) : leaderboardData ? (
+      ) : leaderboardData && Array.isArray(leaderboardData.data) ? (
         <table className={tableClassName}>
           <thead className={headerClassName}>
             <tr>

@@ -70,7 +70,12 @@ export default function Home() {
       ) : leaderboardData ? (
         leaderboardData.data.map((user) => (
           <div key={user.username}>
-            {user.username}: {user.total_points} points
+            Username: {user.username} <br />
+            Twitter Points: {user.twitter_points} <br />
+            Content Points: {user.content_points} <br />
+            Total Points: {user.total_points} <br />
+            {user.has_badge && `Badge: ${user.badge_icon}`} <br />
+            <hr />
           </div>
         ))
       ) : (
@@ -110,7 +115,12 @@ export default function Home() {
       ) : leaderboardData ? (
         leaderboardData.data.map((user) => (
           <div key={user.username}>
-            {user.username}: {user.total_points} points
+            Username: {user.username} <br />
+            Twitter Points: {user.twitter_points} <br />
+            Content Points: {user.content_points} <br />
+            Total Points: {user.total_points} <br />
+            {user.has_badge && `Badge: ${user.badge_icon}`} <br />
+            <hr />
           </div>
         ))
       ) : (

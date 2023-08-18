@@ -51,7 +51,7 @@ class ApiError extends Error {
  * Fetches the leaderboard data for the given client.
  * @param {string} client - The client ID.
  * @param {LeaderboardOptions} [options] - An optional object containing additional parameters like time period, trial, badge filter.
- * @returns {Promise<LeaderboardResponse | Error>} A promise that resolves to the leaderboard data or an error.
+ * @returns {Promise<LeaderboardResponse | Error>} A promise that resolves to the leaderboard data or an ApiError with a message 'Wrong client ID provided. Please check your client name and try again.' if the client ID is incorrect, or other errors.
  */
 const getLeaderboard = async (client, options) => {
     if (!client) {
@@ -61,7 +61,13 @@ const getLeaderboard = async (client, options) => {
     const url = `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}${timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''}`;
     try {
         const response = await axios_1.default.get(url);
-        return response.data;
+        // Check if the data property is an array
+        if (Array.isArray(response.data.data)) {
+            return response.data;
+        }
+        else {
+            return new ApiError('Wrong client ID provided. Please check your client name and try again.');
+        }
     }
     catch (error) {
         return handleError(error);
@@ -117,7 +123,7 @@ const handleError = (error) => {
         axiosError.response.data &&
         axiosError.response.data.data &&
         axiosError.response.data.data.error === 'invalid client_name') {
-        return new ApiError('Wrong client ID provided.');
+        return new ApiError('Wrong client ID provided. Please check your client name and try again.');
     }
     if (axiosError.response) {
         return new ApiError(`Server responded with status ${axiosError.response.status}: ${axiosError.message}`);

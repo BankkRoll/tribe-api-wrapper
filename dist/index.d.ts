@@ -5,7 +5,7 @@ export { Leaderboard } from './Leaderboard';
  * Fetches the leaderboard data for the given client.
  * @param {string} client - The client ID.
  * @param {LeaderboardOptions} [options] - An optional object containing additional parameters like time period, trial, badge filter.
- * @returns {Promise<LeaderboardResponse | Error>} A promise that resolves to the leaderboard data or an error.
+ * @returns {Promise<LeaderboardResponse | Error>} A promise that resolves to the leaderboard data or an ApiError with a message 'Wrong client ID provided. Please check your client name and try again.' if the client ID is incorrect, or other errors.
  */
 export declare const getLeaderboard: (client: string, options?: LeaderboardOptions) => Promise<LeaderboardResponse | Error>;
 /**

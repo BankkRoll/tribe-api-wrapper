@@ -1,6 +1,6 @@
 {
   "name": "tribe-api-wrapper",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Custom wrapper for tribe tracking",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
