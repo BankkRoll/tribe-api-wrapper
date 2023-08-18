@@ -37,7 +37,6 @@ const index_1 = require("./index");
  * @param {string} [className] - CSS class for the main container. Optional.
  * @param {string} [errorClassName] - CSS class for error messages. Optional.
  * @param {string} [loadingClassName] - CSS class for loading messages. Optional.
- * @param {string} [userClassName] - CSS class for user details. Optional.
  * @param {React.CSSProperties} [style] - Inline styles for the main container. Optional.
  */
 const Leaderboard = ({ client, timePeriod = 'all', trial, badgeFilter, className, errorClassName, loadingClassName, tableClassName, titleClassName, textClassName, headerClassName, rowClassName, badgeClassName, badgeIcon = '✔️', style, }) => {
@@ -75,7 +74,8 @@ const Leaderboard = ({ client, timePeriod = 'all', trial, badgeFilter, className
                 react_1.default.createElement("th", { className: titleClassName }, "Total Earned"))),
         react_1.default.createElement("tbody", null, leaderboardData.data.map((user) => (react_1.default.createElement("tr", { key: user.username, className: rowClassName },
             react_1.default.createElement("td", { className: textClassName },
-                user.has_badge ? react_1.default.createElement("span", { className: badgeClassName }, badgeIcon) : '',
+                user.has_badge ? react_1.default.createElement("span", { className: badgeClassName },
+                    react_1.default.createElement("img", { src: badgeIcon, alt: "badge" })) : '',
                 " ",
                 user.username),
             react_1.default.createElement("td", { className: textClassName }, user.twitter_points),

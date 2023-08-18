@@ -112,6 +112,13 @@ exports.getPublicClientUserList = getPublicClientUserList;
  */
 const handleError = (error) => {
     const axiosError = error;
+    // Check if the error message is "invalid client_name" and handle it
+    if (axiosError.response &&
+        axiosError.response.data &&
+        axiosError.response.data.data &&
+        axiosError.response.data.data.error === 'invalid client_name') {
+        return new ApiError('Invalid client ID provided.');
+    }
     if (axiosError.response) {
         return new ApiError(`Server responded with status ${axiosError.response.status}: ${axiosError.message}`);
     }

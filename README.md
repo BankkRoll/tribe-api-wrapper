@@ -140,7 +140,6 @@ export default function Home() {
           className="custom-leaderboard"
           errorClassName="custom-error"
           loadingClassName="custom-loading"
-          userClassName="custom-user"
           tableClassName="custom-table"
           headerClassName="custom-header"
           rowClassName="custom-row"
@@ -172,7 +171,6 @@ export default function Home() {
           className="custom-leaderboard"
           errorClassName="custom-error"
           loadingClassName="custom-loading"
-          userClassName="custom-user"
           tableClassName="custom-table"
           headerClassName="custom-header"
           rowClassName="custom-row"
@@ -241,14 +239,12 @@ export default function Home() {
       - <code>timePeriod</code>: Options <code>'week'</code>, <code>'month'</code>, <code>'all'</code>. <strong>Default</strong>: <code>'all'</code> (Optional)<br>
       - <code>trial</code>: <strong>Default</strong>: true (Optional)<br>
       - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)<br>
-      - <code>className</code>, <code>errorClassName</code>, <code>loadingClassName</code>, <code>userClassName</code>, <code>tableClassName</code>, <code>headerClassName</code>, <code>rowClassName</code>, <code>badgeClassName</code>, <code>titleClassName</code>, <code>textClassName</code> (Optional)<br>
-      - <code>badgeIcon</code>: String representing the badge icon (Optional)<br>
+      - <code>className</code>, <code>errorClassName</code>, <code>loadingClassName</code>, <code>tableClassName</code>, <code>headerClassName</code>, <code>rowClassName</code>, <code>badgeClassName</code>, <code>titleClassName</code>, <code>textClassName</code> (Optional)<br>
+      - <code>badgeIcon</code>: String representing the badge icon, can be a URL to an image (e.g., SVG, PNG, GIF), a local image path, or a text string. (Optional)<br>
       - <code>style</code>: Custom inline styles (Optional)
     </td>
   </tr>
 </table>
-
-
 
 ### Types
 Refer to [`types.ts`](/types.ts) for the detailed type definitions.

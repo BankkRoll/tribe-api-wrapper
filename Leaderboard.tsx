@@ -12,7 +12,6 @@ import { getLeaderboard, LeaderboardProps, LeaderboardResponse } from './index';
  * @param {string} [className] - CSS class for the main container. Optional.
  * @param {string} [errorClassName] - CSS class for error messages. Optional.
  * @param {string} [loadingClassName] - CSS class for loading messages. Optional.
- * @param {string} [userClassName] - CSS class for user details. Optional.
  * @param {React.CSSProperties} [style] - Inline styles for the main container. Optional.
  */
 export const Leaderboard: React.FC<LeaderboardProps> = ({
@@ -74,7 +73,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
             {leaderboardData.data.map((user) => (
               <tr key={user.username} className={rowClassName}>
                 <td className={textClassName}>
-                  {user.has_badge ? <span className={badgeClassName}>{badgeIcon}</span> : ''} {user.username}
+                  {user.has_badge ? <span className={badgeClassName}><img src={badgeIcon} alt="badge" /></span> : ''} {user.username}
                 </td>
                 <td className={textClassName}>{user.twitter_points}</td>
                 <td className={textClassName}>{user.content_points}</td>
@@ -87,5 +86,5 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
         <div className={`${loadingClassName} ${textClassName}`}>Loading...</div>
       )}
     </div>
-  );
+  );  
 };

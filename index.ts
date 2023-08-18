@@ -1,6 +1,6 @@
 // index.ts
 import axios, { AxiosError } from 'axios';
-import { LeaderboardResponse, ClientListResponse, PublicClientUserListResponse, LeaderboardOptions } from './types';
+import { LeaderboardResponse, ClientListResponse, PublicClientUserListResponse, LeaderboardOptions, ErrorResponse } from './types';
 export * from './types';
 export { Leaderboard } from './Leaderboard';
 
@@ -108,10 +108,22 @@ export const getPublicClientUserList = async (
  * @returns {Error} A new ApiError object with details of the error.
  */
 const handleError = (error: unknown): Error => {
-  const axiosError = error as AxiosError;
+  const axiosError = error as AxiosError<ErrorResponse>;
+
+  // Check if the error message is "invalid client_name" and handle it
+  if (
+    axiosError.response &&
+    axiosError.response.data &&
+    axiosError.response.data.data &&
+    axiosError.response.data.data.error === 'invalid client_name'
+  ) {
+    return new ApiError('Invalid client ID provided.');
+  }
+
   if (axiosError.response) {
     return new ApiError(`Server responded with status ${axiosError.response.status}: ${axiosError.message}`);
   } else {
     return new ApiError(axiosError.message);
   }
 };
+

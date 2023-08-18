@@ -48,3 +48,9 @@ export interface ClientListResponse {
 export interface PublicClientUserListResponse {
     data: string[];
 }
+/** Response format for the error API */
+export interface ErrorResponse {
+    data: {
+        error: string;
+    };
+}
