@@ -3,22 +3,25 @@ export * from './types';
 export { Leaderboard } from './Leaderboard';
 /**
  * Fetches the leaderboard data for the given client.
- * @param client The client ID (string).
- * @param options An optional object containing additional parameters.
- * @param useProxy An optional boolean to determine whether to use the Next.js API route.
- * @returns A promise that resolves to the leaderboard data or an error.
+ * @param {string} client - The client ID.
+ * @param {LeaderboardOptions} [options] - An optional object containing additional parameters like time period, trial, badge filter.
+ * @returns {Promise<LeaderboardResponse | Error>} A promise that resolves to the leaderboard data or an error.
  */
-export declare const getLeaderboard: (client: string, options?: LeaderboardOptions, useProxy?: boolean) => Promise<LeaderboardResponse | Error>;
+export declare const getLeaderboard: (client: string, options?: LeaderboardOptions) => Promise<LeaderboardResponse | Error>;
 /**
  * Fetches the list of clients.
- * @returns A promise that resolves to the client list or an error.
+ * @returns {Promise<ClientListResponse | Error>} A promise that resolves to the client list or an error.
  */
-export declare const getClientList: (useProxy?: boolean) => Promise<ClientListResponse | Error>;
+export declare const getClientList: () => Promise<ClientListResponse | Error>;
 /**
  * Fetches the public client user list for the given client.
- * @param client The client ID (string).
- * @param options An optional object containing additional parameters.
- * @param useProxy An optional boolean to determine whether to use the Next.js API route.
- * @returns A promise that resolves to the public client user list or an error.
+ * @param {string} client - The client ID.
+ * @param {Object} [options] - An optional object containing additional parameters like time period and badge filter.
+ * @param {string} [options.timePeriod='all'] - A filter by time period ('all', 'week', or 'month').
+ * @param {boolean} [options.badgeFilter=false] - A boolean value to filter by badges.
+ * @returns {Promise<PublicClientUserListResponse | Error>} A promise that resolves to the public client user list or an error.
  */
-export declare const getPublicClientUserList: (client: string, options?: LeaderboardOptions, useProxy?: boolean) => Promise<PublicClientUserListResponse | Error>;
+export declare const getPublicClientUserList: (client: string, options?: {
+    timePeriod?: string;
+    badgeFilter?: boolean;
+}) => Promise<PublicClientUserListResponse | Error>;

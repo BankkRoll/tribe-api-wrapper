@@ -23,18 +23,24 @@ const axios_1 = __importDefault(require("axios"));
 __exportStar(require("./types"), exports);
 var Leaderboard_1 = require("./Leaderboard");
 Object.defineProperty(exports, "Leaderboard", { enumerable: true, get: function () { return Leaderboard_1.Leaderboard; } });
-/** Base URLs for the API endpoints */
-const BASE_URL = 'https://leaderboard.tribenft.co/leaderboard-ranking/?client=';
-const CLIENT_LIST_URL = 'https://leaderboard.tribenft.co/client-list/';
-const PUBLIC_CLIENT_USER_LIST_URL = 'https://leaderboard.tribenft.co/public-client-user-list/?client=';
-/** Custom Error class for validation errors */
+/**
+ * Base URLs for the API endpoints.
+ */
+const BASE_URL = 'https://tribe-api-wrapper.bankkroll.repl.co/leaderboard-ranking?client=';
+const CLIENT_LIST_URL = 'https://tribe-api-wrapper.bankkroll.repl.co/client-list/';
+const PUBLIC_CLIENT_USER_LIST_URL = 'https://tribe-api-wrapper.bankkroll.repl.co/public-client-user-list?client=';
+/**
+ * Custom Error class for validation errors.
+ */
 class ValidationError extends Error {
     constructor(message) {
         super(message);
         this.name = 'ValidationError';
     }
 }
-/** Custom Error class for API errors */
+/**
+ * Custom Error class for API errors.
+ */
 class ApiError extends Error {
     constructor(message) {
         super(message);
@@ -42,31 +48,17 @@ class ApiError extends Error {
     }
 }
 /**
- * Constructs the URL based on the useProxy option and endpoint.
- * @param endpoint The endpoint URL.
- * @param client The client ID (string).
- * @param options An optional object containing additional parameters.
- * @param useProxy An optional boolean to determine whether to use the Next.js API route.
- * @returns A URL string.
- */
-const buildUrl = (endpoint, client, options, useProxy) => {
-    const { timePeriod = 'all', trial = true, badgeFilter = false } = options || {};
-    return useProxy
-        ? `/api/${endpoint}?client=${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}&time_period=${timePeriod}`
-        : `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}${timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''}`;
-};
-/**
  * Fetches the leaderboard data for the given client.
- * @param client The client ID (string).
- * @param options An optional object containing additional parameters.
- * @param useProxy An optional boolean to determine whether to use the Next.js API route.
- * @returns A promise that resolves to the leaderboard data or an error.
+ * @param {string} client - The client ID.
+ * @param {LeaderboardOptions} [options] - An optional object containing additional parameters like time period, trial, badge filter.
+ * @returns {Promise<LeaderboardResponse | Error>} A promise that resolves to the leaderboard data or an error.
  */
-const getLeaderboard = async (client, options, useProxy) => {
+const getLeaderboard = async (client, options) => {
     if (!client) {
         return new ValidationError('Client parameter is required.');
     }
-    const url = buildUrl('leaderboard-ranking', client, options, useProxy);
+    const { timePeriod = 'all', trial = true, badgeFilter = false } = options || {};
+    const url = `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}${timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''}`;
     try {
         const response = await axios_1.default.get(url);
         return response.data;
@@ -78,12 +70,11 @@ const getLeaderboard = async (client, options, useProxy) => {
 exports.getLeaderboard = getLeaderboard;
 /**
  * Fetches the list of clients.
- * @returns A promise that resolves to the client list or an error.
+ * @returns {Promise<ClientListResponse | Error>} A promise that resolves to the client list or an error.
  */
-const getClientList = async (useProxy) => {
-    const url = useProxy ? '/api/client-list' : CLIENT_LIST_URL;
+const getClientList = async () => {
     try {
-        const response = await axios_1.default.get(url);
+        const response = await axios_1.default.get(CLIENT_LIST_URL);
         return response.data;
     }
     catch (error) {
@@ -93,17 +84,18 @@ const getClientList = async (useProxy) => {
 exports.getClientList = getClientList;
 /**
  * Fetches the public client user list for the given client.
- * @param client The client ID (string).
- * @param options An optional object containing additional parameters.
- * @param useProxy An optional boolean to determine whether to use the Next.js API route.
- * @returns A promise that resolves to the public client user list or an error.
+ * @param {string} client - The client ID.
+ * @param {Object} [options] - An optional object containing additional parameters like time period and badge filter.
+ * @param {string} [options.timePeriod='all'] - A filter by time period ('all', 'week', or 'month').
+ * @param {boolean} [options.badgeFilter=false] - A boolean value to filter by badges.
+ * @returns {Promise<PublicClientUserListResponse | Error>} A promise that resolves to the public client user list or an error.
  */
-const getPublicClientUserList = async (client, options, // Change the type to match LeaderboardOptions
-useProxy) => {
+const getPublicClientUserList = async (client, options) => {
     if (!client) {
         return new ValidationError('Client parameter is required.');
     }
-    const url = buildUrl('public-client-user-list', client, options, useProxy);
+    const { timePeriod = 'all', badgeFilter = false } = options || {};
+    const url = `${PUBLIC_CLIENT_USER_LIST_URL}${encodeURIComponent(client)}${timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''}&badge_filter=${badgeFilter}`;
     try {
         const response = await axios_1.default.get(url);
         return response.data;
@@ -115,8 +107,8 @@ useProxy) => {
 exports.getPublicClientUserList = getPublicClientUserList;
 /**
  * Error handling function for API errors.
- * @param error The error object.
- * @returns A new ApiError object.
+ * @param {unknown} error - The error object.
+ * @returns {Error} A new ApiError object with details of the error.
  */
 const handleError = (error) => {
     const axiosError = error;
