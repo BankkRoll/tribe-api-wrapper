@@ -132,17 +132,24 @@ export default function Home() {
   return (
     <div>
       <h1>Leaderboard</h1>
-      <Leaderboard
-        client="example-client-id"
-        timePeriod="week"
-        className="custom-leaderboard"
-        errorClassName="custom-error"
-        loadingClassName="custom-loading"
-        userClassName="custom-user"
-        trial={true}
-        badgeFilter={false}
-        style={{ border: '1px solid #ccc' }}
-      />
+        <Leaderboard
+          client="example-client-id"
+          timePeriod="week"
+          trial={true}
+          badgeFilter={false}
+          className="custom-leaderboard"
+          errorClassName="custom-error"
+          loadingClassName="custom-loading"
+          userClassName="custom-user"
+          tableClassName="custom-table"
+          headerClassName="custom-header"
+          rowClassName="custom-row"
+          badgeClassName="custom-badge"
+          titleClassName="custom-title"
+          textClassName="custom-text"
+          badgeIcon="path/to/badge/icon.png"
+          style={{ border: '1px solid #ccc' }}
+        />
     </div>
   );
 }
@@ -157,17 +164,24 @@ export default function Home() {
   return (
     <div>
       <h1>Leaderboard</h1>
-      <Leaderboard
-        client="example-client-id"
-        timePeriod="week"
-        className="custom-leaderboard"
-        errorClassName="custom-error"
-        loadingClassName="custom-loading"
-        userClassName="custom-user"
-        trial={true}
-        badgeFilter={false}
-        style={{ border: '1px solid #ccc' }}
-      />
+        <Leaderboard
+          client="example-client-id"
+          timePeriod="week"
+          trial={true}
+          badgeFilter={false}
+          className="custom-leaderboard"
+          errorClassName="custom-error"
+          loadingClassName="custom-loading"
+          userClassName="custom-user"
+          tableClassName="custom-table"
+          headerClassName="custom-header"
+          rowClassName="custom-row"
+          badgeClassName="custom-badge"
+          titleClassName="custom-title"
+          textClassName="custom-text"
+          badgeIcon="path/to/badge/icon.png"
+          style={{ border: '1px solid #ccc' }}
+        />
     </div>
   );
 }
@@ -227,11 +241,13 @@ export default function Home() {
       - <code>timePeriod</code>: Options <code>'week'</code>, <code>'month'</code>, <code>'all'</code>. <strong>Default</strong>: <code>'all'</code> (Optional)<br>
       - <code>trial</code>: <strong>Default</strong>: true (Optional)<br>
       - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)<br>
-      - <code>className</code>, <code>errorClassName</code>, <code>loadingClassName</code>, <code>userClassName</code> (Optional)<br>
+      - <code>className</code>, <code>errorClassName</code>, <code>loadingClassName</code>, <code>userClassName</code>, <code>tableClassName</code>, <code>headerClassName</code>, <code>rowClassName</code>, <code>badgeClassName</code>, <code>titleClassName</code>, <code>textClassName</code> (Optional)<br>
+      - <code>badgeIcon</code>: String representing the badge icon (Optional)<br>
       - <code>style</code>: Custom inline styles (Optional)
     </td>
   </tr>
 </table>
+
 
 
 ### Types

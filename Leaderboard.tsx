@@ -23,7 +23,13 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   className,
   errorClassName,
   loadingClassName,
-  userClassName,
+  tableClassName,
+  titleClassName,
+  textClassName,
+  headerClassName,
+  rowClassName,
+  badgeClassName,
+  badgeIcon = '✔️',
   style,
 }) => {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardResponse | null>(null);
@@ -53,15 +59,32 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   return (
     <div className={className} style={style}>
       {error ? (
-        <div className={errorClassName}>Error: {error}</div>
+        <div className={`${errorClassName} ${textClassName}`}>Error: {error}</div>
       ) : leaderboardData ? (
-        leaderboardData.data.map((user) => (
-          <div key={user.username} className={userClassName}>
-            {user.username}: {user.total_points} points
-          </div>
-        ))
+        <table className={tableClassName}>
+          <thead className={headerClassName}>
+            <tr>
+              <th className={titleClassName}>Member</th>
+              <th className={titleClassName}>Twitter Points</th>
+              <th className={titleClassName}>Content Points</th>
+              <th className={titleClassName}>Total Earned</th>
+            </tr>
+          </thead>
+          <tbody>
+            {leaderboardData.data.map((user) => (
+              <tr key={user.username} className={rowClassName}>
+                <td className={textClassName}>
+                  {user.has_badge ? <span className={badgeClassName}>{badgeIcon}</span> : ''} {user.username}
+                </td>
+                <td className={textClassName}>{user.twitter_points}</td>
+                <td className={textClassName}>{user.content_points}</td>
+                <td className={textClassName}>{user.total_points}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
       ) : (
-        <div className={loadingClassName}>Loading...</div>
+        <div className={`${loadingClassName} ${textClassName}`}>Loading...</div>
       )}
     </div>
   );

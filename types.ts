@@ -16,14 +16,20 @@ export interface LeaderboardOptions {
 
 /** Props for the Leaderboard component */
 export interface LeaderboardProps extends LeaderboardOptions {
-    client: string;
-    className?: string;
-    errorClassName?: string;
-    loadingClassName?: string;
-    userClassName?: string;
-    style?: React.CSSProperties;
-  }
-  
+  client: string;
+  className?: string;
+  errorClassName?: string;
+  loadingClassName?: string;
+  tableClassName?: string;
+  headerClassName?: string;
+  rowClassName?: string;
+  badgeClassName?: string;
+  titleClassName?: string;
+  textClassName?: string;
+  badgeIcon?: string;
+  style?: React.CSSProperties;
+}
+
 
 /** Response format for the leaderboard API */
 export interface LeaderboardResponse {

@@ -19,7 +19,13 @@ export interface LeaderboardProps extends LeaderboardOptions {
     className?: string;
     errorClassName?: string;
     loadingClassName?: string;
-    userClassName?: string;
+    tableClassName?: string;
+    headerClassName?: string;
+    rowClassName?: string;
+    badgeClassName?: string;
+    titleClassName?: string;
+    textClassName?: string;
+    badgeIcon?: string;
     style?: React.CSSProperties;
 }
 /** Response format for the leaderboard API */
