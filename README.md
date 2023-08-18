@@ -18,11 +18,7 @@ This package is designed to offer an accessible and efficient interface for the 
     - [JavaScript](#javascript-1)
 - [API Docs](#api-docs)
   - [Functions API Docs](#functions-api-docs)
-    - [`getLeaderboard(client: string, options?: LeaderboardOptions): Promise<LeaderboardResponse | Error>`](#getleaderboardclient-string-options-leaderboardoptions-promiseleaderboardresponse--error)
-    - [`getClientList(): Promise<ClientListResponse | Error>`](#getclientlist-promiseclientlistresponse--error)
-    - [`getPublicClientUserList(client: string, options?: { timePeriod?: string; badgeFilter?: boolean }): Promise<PublicClientUserListResponse | Error>`](#getpublicclientuserlistclient-string-options--timeperiod-string-badgefilter-boolean--promisepublicclientuserlistresponse--error)
   - [Component API Docs](#component-api-docs)
-    - [`Leaderboard`](#leaderboard)
 - [Types](#types)
 - [Contributing](#contributing)
 - [License](#license)
@@ -183,47 +179,63 @@ export default function Home() {
 
 ### Functions API Docs
 
-#### `getLeaderboard(client: string, options?: LeaderboardOptions): Promise<LeaderboardResponse | Error>`
-
-Fetches the leaderboard data for the given client.
-
-**Options:**
-- `timePeriod`: (Optional) Filter by time period - `'all'`, `'week'`, or `'month'`. Default: `'all'`.
-- `trial`: (Optional) A boolean value to include/exclude trial data. Default: `true`.
-- `badgeFilter`: (Optional) A boolean value to filter by badges. Default: `false`.
-
-#### `getClientList(): Promise<ClientListResponse | Error>`
-
-Fetches the list of clients. No options required for this function.
-
-#### `getPublicClientUserList(client: string, options?: { timePeriod?: string; badgeFilter?: boolean }): Promise<PublicClientUserListResponse | Error>`
-
-Fetches the public client user list for the given client.
-
-**Options:**
-- `timePeriod`: (Optional) Filter by time period - `'all'`, `'week'`, or `'month'`. Default: `'all'`.
-- `badgeFilter`: (Optional) A boolean value to filter by badges.
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Function Name</th>
+    <th>Description</th>
+    <th>Parameters / Options</th>
+  </tr>
+  <tr>
+    <td><code>getLeaderboard(client: string, ...)</code></td>
+    <td>Fetches the leaderboard data for the given client.</td>
+    <td>
+      - <code>client</code>: (Required)<br>
+      - <code>timePeriod</code>: Options <code>'week'</code>, <code>'month'</code>, <code>'all'</code>. <strong>Default</strong>: <code>'all'</code> (Optional)<br>
+      - <code>trial</code>: <strong>Default</strong>: true (Optional)<br>
+      - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)
+    </td>
+  </tr>
+  <tr>
+    <td><code>getClientList(): Promise&lt;...&gt;</code></td>
+    <td>Fetches the list of all clients.</td>
+    <td>None</td>
+  </tr>
+  <tr>
+    <td><code>getPublicClientUserList(client,...)</code></td>
+    <td>Fetches the public client user list for the given client.</td>
+    <td>
+      - <code>client</code>: (Required)<br>
+      - <code>timePeriod</code>: Options <code>'week'</code>, <code>'month'</code>, <code>'all'</code>. <strong>Default</strong>: <code>'all'</code> (Optional)<br>
+      - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)
+    </td>
+  </tr>
+</table>
 
 ### Component API Docs
 
-#### `Leaderboard`
+<table border="1" cellpadding="5" cellspacing="0">
+  <tr>
+    <th>Component Name</th>
+    <th>Description</th>
+    <th>Props</th>
+  </tr>
+  <tr>
+    <td><code>Leaderboard</code></td>
+    <td>A React component that displays a leaderboard.</td>
+    <td>
+      - <code>client</code>: (Required)<br>
+      - <code>timePeriod</code>: Options <code>'week'</code>, <code>'month'</code>, <code>'all'</code>. <strong>Default</strong>: <code>'all'</code> (Optional)<br>
+      - <code>trial</code>: <strong>Default</strong>: true (Optional)<br>
+      - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)<br>
+      - <code>className</code>, <code>errorClassName</code>, <code>loadingClassName</code>, <code>userClassName</code> (Optional)<br>
+      - <code>style</code>: Custom inline styles (Optional)
+    </td>
+  </tr>
+</table>
 
-A React component that displays a leaderboard for the given client, including the username and total points for each user. The leaderboard can be customized using various options.
-
-**Props:**
-- `client`: (Required) The client ID (string).
-- `timePeriod`: (Optional) Filter by time period - `'all'`, `'week'`, or `'month'`. Default: `'all'`.
-- `trial`: (Optional) A boolean value to include/exclude trial data. Default: `true`.
-- `badgeFilter`: (Optional) A boolean value to filter by badges. Default: `false`.
-- `className`: (Optional) Custom CSS class for the main container.
-- `titleClassName`: (Optional) Custom CSS class for the title.
-- `errorClassName`: (Optional) Custom CSS class for error messages.
-- `loadingClassName`: (Optional) Custom CSS class for loading messages.
-- `userClassName`: (Optional) Custom CSS class for user entries.
-- `style`: (Optional) Custom inline styles for the main container.
 
 ### Types
-Refer to `types.ts` for the detailed type definitions.
+Refer to [`types.ts`](/types.ts) for the detailed type definitions.
 
 ## Contributing
 Contributions are welcome! Please follow the [contributing guidelines](CONTRIBUTING.md) for more information.
