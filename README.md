@@ -4,7 +4,7 @@
 ![NPM](https://img.shields.io/npm/l/tribe-api-wrapper)
 ![GitHub issues](https://img.shields.io/github/issues/BankkRoll/tribe-api-wrapper)
 
-This library is designed to offer an accessible and efficient way to retrieve and manage data from the Leaderboard API. It encompasses a React component for visualizing leaderboards and a set of functions that facilitate various interactions with the API endpoints. Together, these features empower developers to create engaging experiences around leaderboards.
+This package is designed to offer an accessible and efficient interface for the [Tribe](https://mytriberewards.com/) Leaderboard API. It encompasses a React component for visualizing leaderboards and a set of functions that were intended to facilitate various interactions with the API endpoints.
 
 ## Table of Contents
 - [Installation](#installation)
@@ -17,18 +17,16 @@ This library is designed to offer an accessible and efficient way to retrieve an
     - [TypeScript](#typescript-1)
     - [JavaScript](#javascript-1)
 - [API Docs](#api-docs)
-  - [Functions](#functions)
-  - [Detailed Function Descriptions](#detailed-function-descriptions)
-    - [`getLeaderboard()`](#getleaderboard)
-    - [`getClientList()`](#getclientlist)
-    - [`getPublicClientUserList()`](#getpublicclientuserlist)
+  - [Functions API Docs](#functions-api-docs)
+    - [`getLeaderboard(client: string, options?: LeaderboardOptions): Promise<LeaderboardResponse | Error>`](#getleaderboardclient-string-options-leaderboardoptions-promiseleaderboardresponse--error)
+    - [`getClientList(): Promise<ClientListResponse | Error>`](#getclientlist-promiseclientlistresponse--error)
+    - [`getPublicClientUserList(client: string, options?: { timePeriod?: string; badgeFilter?: boolean }): Promise<PublicClientUserListResponse | Error>`](#getpublicclientuserlistclient-string-options--timeperiod-string-badgefilter-boolean--promisepublicclientuserlistresponse--error)
   - [Component API Docs](#component-api-docs)
     - [`Leaderboard`](#leaderboard)
 - [Types](#types)
 - [Contributing](#contributing)
 - [License](#license)
 - [Disclaimer](#disclaimer)
-
 
 ## Installation
 Install the library using npm:
@@ -48,181 +46,163 @@ import { getLeaderboard, Leaderboard } from 'tribe-api-wrapper';
 ### Using the getLeaderboard Function
 
 #### TypeScript
-```typescript
-import { getLeaderboard } from 'tribe-api-wrapper';
+```tsx
+import { LeaderboardResponse, getLeaderboard } from 'tribe-api-wrapper';
+import { useState, useEffect } from 'react';
 
-const client = 'example-client-id';
-const options = { timePeriod: 'week' };
+export default function Home() {
+  const [leaderboardData, setLeaderboardData] = useState<LeaderboardResponse | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
-getLeaderboard(client, options).then(data => {
-  console.log(data);
-});
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getLeaderboard('example-client-id', { timePeriod: 'week', trial: true, badgeFilter: false });
+      if (data instanceof Error) {
+        setError(data.message);
+      } else {
+        setLeaderboardData(data as LeaderboardResponse);
+      }
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Leaderboard</h1>
+      {error ? (
+        <div>Error: {error}</div>
+      ) : leaderboardData ? (
+        leaderboardData.data.map((user) => (
+          <div key={user.username}>
+            {user.username}: {user.total_points} points
+          </div>
+        ))
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+  );
+}
 ```
 
 #### JavaScript
 ```javascript
 import { getLeaderboard } from 'tribe-api-wrapper';
+import { useState, useEffect } from 'react';
 
-const client = 'example-client-id';
-const options = { timePeriod: 'week' };
+export default function Home() {
+  const [leaderboardData, setLeaderboardData] = useState(null);
+  const [error, setError] = useState(null);
 
-getLeaderboard(client, options).then(data => {
-  console.log(data);
-});
+  useEffect(() => {
+    async function fetchData() {
+      const data = await getLeaderboard('example-client-id', { timePeriod: 'week', trial: true, badgeFilter: false });
+      if (data instanceof Error) {
+        setError(data.message);
+      } else {
+        setLeaderboardData(data);
+      }
+    }
+    fetchData();
+  }, []);
+
+  return (
+    <div>
+      <h1>Leaderboard</h1>
+      {error ? (
+        <div>Error: {error}</div>
+      ) : leaderboardData ? (
+        leaderboardData.data.map((user) => (
+          <div key={user.username}>
+            {user.username}: {user.total_points} points
+          </div>
+        ))
+      ) : (
+        <div>Loading...</div>
+      )}
+    </div>
+  );
+}
+
 ```
 
 ### Using the Leaderboard Component
 
 #### TypeScript
 ```tsx
-import React from 'react';
 import { Leaderboard } from 'tribe-api-wrapper';
 
-const App: React.FC = () => {
+export default function Home() {
   return (
     <div>
-      <h1>My Leaderboard Page</h1>
+      <h1>Leaderboard</h1>
       <Leaderboard
         client="example-client-id"
         timePeriod="week"
         className="custom-leaderboard"
-        titleClassName="custom-title"
         errorClassName="custom-error"
         loadingClassName="custom-loading"
         userClassName="custom-user"
+        trial={true}
+        badgeFilter={false}
+        style={{ border: '1px solid #ccc' }}
       />
     </div>
   );
-};
+}
 
-export default App;
 ```
 
 #### JavaScript
 ```jsx
-import React from 'react';
 import { Leaderboard } from 'tribe-api-wrapper';
 
-const App = () => {
+export default function Home() {
   return (
     <div>
-      <h1>My Leaderboard Page</h1>
+      <h1>Leaderboard</h1>
       <Leaderboard
         client="example-client-id"
         timePeriod="week"
         className="custom-leaderboard"
-        titleClassName="custom-title"
         errorClassName="custom-error"
         loadingClassName="custom-loading"
         userClassName="custom-user"
+        trial={true}
+        badgeFilter={false}
+        style={{ border: '1px solid #ccc' }}
       />
     </div>
   );
-};
+}
 
-export default App;
 ```
 
 
 ## API Docs
-### Functions
-- `getLeaderboard(client: string, options?: LeaderboardOptions): Promise<LeaderboardResponse | Error>`
-- `getClientList(): Promise<ClientListResponse | Error>`
-- `getPublicClientUserList(client: string, options?: { timePeriod?: string; badgeFilter?: boolean }): Promise<PublicClientUserListResponse | Error>`
 
-### Detailed Function Descriptions
+### Functions API Docs
 
-### `getLeaderboard()`
+#### `getLeaderboard(client: string, options?: LeaderboardOptions): Promise<LeaderboardResponse | Error>`
 
 Fetches the leaderboard data for the given client.
 
 **Options:**
-- `timePeriod`: Filter by time period - ('all', 'week', or 'month') - (optional) - (default: all).
-- `trial`: A boolean value to include/exclude trial data - (optional) - (default: true).
-- `badgeFilter`: A boolean value to filter by badges - (optional) - (default: false).
+- `timePeriod`: (Optional) Filter by time period - `'all'`, `'week'`, or `'month'`. Default: `'all'`.
+- `trial`: (Optional) A boolean value to include/exclude trial data. Default: `true`.
+- `badgeFilter`: (Optional) A boolean value to filter by badges. Default: `false`.
 
-**Usage:**
-```typescript
-import { getLeaderboard } from 'tribe-api-wrapper';
+#### `getClientList(): Promise<ClientListResponse | Error>`
 
-const client = 'example-client-id';
-const options = { timePeriod: 'week' };
-getLeaderboard(client, options);
-```
+Fetches the list of clients. No options required for this function.
 
-**Example Response:**
-```json
-{
-  "data": [
-    {
-      "username": "JohnDoe",
-      "has_badge": true,
-      "twitter_points": 100,
-      "content_points": 200,
-      "total_points": 300
-    }
-  ]
-}
-```
-
-### `getClientList()`
-
-Fetches the list of clients.
-
-**Usage:**
-```typescript
-import { getClientList } from 'tribe-api-wrapper';
-
-getClientList();
-```
-
-**Example Response:**
-```json
-{
-  "data": [
-    {
-      "client": "example-client-id",
-      "trial": true,
-      "avatar": "avatar.png",
-      "background": "background.png",
-      "is_hidden": false
-    }
-  ]
-}
-```
-
-### `getPublicClientUserList()`
+#### `getPublicClientUserList(client: string, options?: { timePeriod?: string; badgeFilter?: boolean }): Promise<PublicClientUserListResponse | Error>`
 
 Fetches the public client user list for the given client.
 
 **Options:**
-- `timePeriod`: Filter by time period - ('all', 'week', or 'month') - (optional) - (default: 'all').
-- `badgeFilter`: A boolean value to filter by badges - (optional).
-
-**Usage:**
-```typescript
-import { getPublicClientUserList } from 'tribe-api-wrapper';
-
-const client = 'example-client-id';
-const options = { timePeriod: 'week' };
-getPublicClientUserList(client, options);
-```
-
-**Example Response:**
-```json
-{
-  "data": [
-    {
-      "username": "JohnDoe",
-      "has_badge": true,
-      "twitter_points": 100,
-      "content_points": 200,
-      "total_points": 300
-    },
-    // More entries...
-  ]
-}
-```
+- `timePeriod`: (Optional) Filter by time period - `'all'`, `'week'`, or `'month'`. Default: `'all'`.
+- `badgeFilter`: (Optional) A boolean value to filter by badges.
 
 ### Component API Docs
 
@@ -231,53 +211,16 @@ getPublicClientUserList(client, options);
 A React component that displays a leaderboard for the given client, including the username and total points for each user. The leaderboard can be customized using various options.
 
 **Props:**
-- `client`: The client ID (string) - Required.
-- `timePeriod`: Filter by time period ('all', 'week', or 'month') - (optional) - (default: 'all').
-- `trial`: A boolean value to include/exclude trial data - (optional) - (default: true).
-- `badgeFilter`: A boolean value to filter by badges - (optional) - (default: false).
-- `className`: Custom CSS class for the main container - (optional).
-- `titleClassName`: Custom CSS class for the title - (optional).
-- `errorClassName`: Custom CSS class for error messages - (optional).
-- `loadingClassName`: Custom CSS class for loading messages - (optional).
-- `userClassName`: Custom CSS class for user entries - (optional).
-- `style`: Custom inline styles for the main container - (optional).
-
-**Usage:**
-```typescript
-import { Leaderboard } from 'tribe-api-wrapper';
-
-const App: React.FC = () => {
-  return (
-    <div>
-      <h1>My Leaderboard Page</h1>
-      <Leaderboard
-        client="example-client-id"
-        timePeriod="week"
-        trial={true}
-        badgeFilter={false}
-        className="custom-leaderboard"
-        titleClassName="custom-title"
-        errorClassName="custom-error"
-        loadingClassName="custom-loading"
-        userClassName="custom-user"
-        style={{ border: '1px solid #ccc' }}
-      />
-    </div>
-  );
-};
-
-export default App;
-```
-
-**Rendered Component:**
-```
-   Leaderboard
-  ──────────────────────────────────────
-  Member   Twitter Points  Content Points  Total Earned
-  John Doe    65000           -               68000
-  Doe John    55000           -               58000
-  ──────────────────────────────────────
-```
+- `client`: (Required) The client ID (string).
+- `timePeriod`: (Optional) Filter by time period - `'all'`, `'week'`, or `'month'`. Default: `'all'`.
+- `trial`: (Optional) A boolean value to include/exclude trial data. Default: `true`.
+- `badgeFilter`: (Optional) A boolean value to filter by badges. Default: `false`.
+- `className`: (Optional) Custom CSS class for the main container.
+- `titleClassName`: (Optional) Custom CSS class for the title.
+- `errorClassName`: (Optional) Custom CSS class for error messages.
+- `loadingClassName`: (Optional) Custom CSS class for loading messages.
+- `userClassName`: (Optional) Custom CSS class for user entries.
+- `style`: (Optional) Custom inline styles for the main container.
 
 ### Types
 Refer to `types.ts` for the detailed type definitions.

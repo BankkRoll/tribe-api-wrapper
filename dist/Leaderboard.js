@@ -35,13 +35,12 @@ const index_1 = require("./index");
  * @param {boolean} [trial=true] - A boolean value to include/exclude trial data. Optional.
  * @param {boolean} [badgeFilter=false] - A boolean value to filter by badges. Optional.
  * @param {string} [className] - CSS class for the main container. Optional.
- * @param {string} [titleClassName] - CSS class for the title. Optional.
  * @param {string} [errorClassName] - CSS class for error messages. Optional.
  * @param {string} [loadingClassName] - CSS class for loading messages. Optional.
  * @param {string} [userClassName] - CSS class for user details. Optional.
  * @param {React.CSSProperties} [style] - Inline styles for the main container. Optional.
  */
-const Leaderboard = ({ client, timePeriod = 'all', trial, badgeFilter, className, titleClassName, errorClassName, loadingClassName, userClassName, style, }) => {
+const Leaderboard = ({ client, timePeriod = 'all', trial, badgeFilter, className, errorClassName, loadingClassName, userClassName, style, }) => {
     const [leaderboardData, setLeaderboardData] = (0, react_1.useState)(null);
     const [error, setError] = (0, react_1.useState)(null);
     /**
@@ -65,15 +64,13 @@ const Leaderboard = ({ client, timePeriod = 'all', trial, badgeFilter, className
      * Displays an error message if there is an issue fetching the data.
      * Lists users with their usernames and total points.
      */
-    return (react_1.default.createElement("div", { className: className, style: style },
-        react_1.default.createElement("h1", { className: titleClassName }, "Leaderboard"),
-        error ? (react_1.default.createElement("div", { className: errorClassName },
-            "Error: ",
-            error)) : leaderboardData ? (leaderboardData.data.map((user) => (react_1.default.createElement("div", { key: user.username, className: userClassName },
-            user.username,
-            ": ",
-            user.total_points,
-            " points")))) : (react_1.default.createElement("div", { className: loadingClassName }, "Loading..."))));
+    return (react_1.default.createElement("div", { className: className, style: style }, error ? (react_1.default.createElement("div", { className: errorClassName },
+        "Error: ",
+        error)) : leaderboardData ? (leaderboardData.data.map((user) => (react_1.default.createElement("div", { key: user.username, className: userClassName },
+        user.username,
+        ": ",
+        user.total_points,
+        " points")))) : (react_1.default.createElement("div", { className: loadingClassName }, "Loading..."))));
 };
 exports.Leaderboard = Leaderboard;
 //# sourceMappingURL=Leaderboard.js.map

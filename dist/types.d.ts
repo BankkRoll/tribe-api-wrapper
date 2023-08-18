@@ -17,7 +17,6 @@ export interface LeaderboardOptions {
 export interface LeaderboardProps extends LeaderboardOptions {
     client: string;
     className?: string;
-    titleClassName?: string;
     errorClassName?: string;
     loadingClassName?: string;
     userClassName?: string;
