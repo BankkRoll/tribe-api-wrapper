@@ -26,7 +26,7 @@ export interface LeaderboardProps extends LeaderboardOptions {
   badgeClassName?: string;
   titleClassName?: string;
   textClassName?: string;
-  badgeIcon?: string;
+  badge_icon?: string;
   style?: React.CSSProperties;
 }
 
@@ -60,4 +60,43 @@ export interface ErrorResponse {
   data: {
     error: string;
   };
+}
+
+/** Represents a client */
+export interface Client {
+  client: string;
+  trial: boolean;
+  avatar: string;
+  background: string;
+  is_hidden: boolean;
+};
+
+/** Props for the ClientList component */
+export interface ClientListProps {
+  clients: ClientData[];
+  className?: string;
+  clientClassName?: string;
+  avatarClassName?: string;
+  backgroundClassName?: string;
+  textClassName?: string;
+  style?: React.CSSProperties;
+}
+
+/** Props for the user list */
+export interface UserListProps {
+  users: string[];
+  containerClassName?: string;
+  userClassName?: string;
+  textClassName?: string;
+  style?: React.CSSProperties;
+}
+
+/** Props for the client card */
+export interface ClientCardProps {
+  clientId: string;
+  cardClassName?: string;
+  bannerClassName?: string;
+  avatarClassName?: string;
+  nameClassName?: string;
+  style?: React.CSSProperties;
 }

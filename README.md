@@ -9,13 +9,30 @@ This package is designed to offer an accessible and efficient interface for the 
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)
+  - [Importing Functions and Components](#importing-functions-and-components)
 - [Examples](#examples)
-  - [Using the getLeaderboard Function](#using-the-getleaderboard-function)
+  - [Using Functions Directly](#using-functions-directly)
+    - [Fetching List of Clients](#fetching-list-of-clients)
+    - [Fetching Leaderboard Data](#fetching-leaderboard-data)
+    - [Fetching Public Client User List](#fetching-public-client-user-list)
+  - [Using the `getLeaderboard` Function](#using-the-getleaderboard-function)
     - [TypeScript](#typescript)
     - [JavaScript](#javascript)
-  - [Using the Leaderboard Component](#using-the-leaderboard-component)
+  - [Using the `Leaderboard` Component](#using-the-leaderboard-component)
     - [TypeScript](#typescript-1)
     - [JavaScript](#javascript-1)
+  - [Using the `UserList` Component](#using-the-userlist-component)
+    - [TypeScript](#typescript-2)
+    - [JavaScript](#javascript-2)
+  - [Using the `ClientList` Component](#using-the-clientlist-component)
+    - [TypeScript](#typescript-3)
+    - [JavaScript](#javascript-3)
+  - [Using the `ClientCardLG` Component](#using-the-clientcardlg-component)
+    - [TypeScript](#typescript-4)
+    - [JavaScript](#javascript-4)
+  - [Using the `ClientCardSM` Component](#using-the-clientcardsm-component)
+    - [TypeScript](#typescript-5)
+    - [JavaScript](#javascript-5)
 - [API Docs](#api-docs)
   - [Functions API Docs](#functions-api-docs)
   - [Component API Docs](#component-api-docs)
@@ -32,14 +49,42 @@ npm install tribe-api-wrapper
 ```
 
 ## Usage
-Import the necessary functions and components from the library:
+The library provides a set of functions that can be used directly to interact with the Tribe API. It also includes pre-made React components for common tasks. You can choose to use the functions directly or utilize the components based on your needs.
 
+### Importing Functions and Components
 ```typescript
-import { getLeaderboard, Leaderboard } from 'tribe-api-wrapper';
+import {
+  getLeaderboard,
+  getClientList,
+  getPublicClientUserList,
+  Leaderboard,
+  ClientList,
+  UserList,
+  ClientCardLG,
+  ClientCardSM
+} from 'tribe-api-wrapper';
 ```
 
 ## Examples
-### Using the getLeaderboard Function
+### Using Functions Directly
+
+#### Fetching List of Clients
+```typescript
+const clients = await getClientList();
+```
+
+#### Fetching Leaderboard Data
+```typescript
+const data = await getLeaderboard('example-client-id', { timePeriod: 'week', trial: true, badgeFilter: false });
+```
+
+#### Fetching Public Client User List
+```typescript
+const users = await getPublicClientUserList('example-client-id', { timePeriod: 'all', badgeFilter: false });
+```
+
+## Examples
+### Using the `getLeaderboard` Function
 
 #### TypeScript
 ```tsx
@@ -113,16 +158,16 @@ export default function Home() {
       {error ? (
         <div>Error: {error}</div>
       ) : leaderboardData ? (
-        leaderboardData.data.map((user) => (
-          <div key={user.username}>
-            Username: {user.username} <br />
-            Twitter Points: {user.twitter_points} <br />
-            Content Points: {user.content_points} <br />
-            Total Points: {user.total_points} <br />
-            {user.has_badge && `Badge: ${user.badge_icon}`} <br />
-            <hr />
-          </div>
-        ))
+      leaderboardData.data.map((user) => (
+        <div key={user.username}>
+          Username: {user.username} <br />
+          Twitter Points: {user.twitter_points} <br />
+          Content Points: {user.content_points} <br />
+          Total Points: {user.total_points} <br />
+          {user.has_badge && `Badge: ${user.badge_icon}`} <br />
+          <hr />
+        </div>
+      ))
       ) : (
         <div>Loading...</div>
       )}
@@ -132,7 +177,7 @@ export default function Home() {
 
 ```
 
-### Using the Leaderboard Component
+### Using the `Leaderboard` Component
 
 #### TypeScript
 ```tsx
@@ -156,7 +201,7 @@ export default function Home() {
           badgeClassName="custom-badge"
           titleClassName="custom-title"
           textClassName="custom-text"
-          badgeIcon="path/to/badge/icon.png"
+          badge_icon="path/to/badge/icon.png"
           style={{ border: '1px solid #ccc' }}
         />
     </div>
@@ -187,7 +232,7 @@ export default function Home() {
           badgeClassName="custom-badge"
           titleClassName="custom-title"
           textClassName="custom-text"
-          badgeIcon="path/to/badge/icon.png"
+          badge_icon="path/to/badge/icon.png"
           style={{ border: '1px solid #ccc' }}
         />
     </div>
@@ -196,6 +241,155 @@ export default function Home() {
 
 ```
 
+### Using the `UserList` Component
+
+#### TypeScript
+```tsx
+import { UserList } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <UserList
+      client="example-client-id"
+      containerClassName="custom-container"
+      userClassName="custom-user"
+      textClassName="custom-text"
+      style={{ padding: '10px' }}
+    />
+  );
+}
+```
+
+#### JavaScript
+```jsx
+import { UserList } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <UserList
+      client="example-client-id"
+      containerClassName="custom-container"
+      userClassName="custom-user"
+      textClassName="custom-text"
+      style={{ padding: '10px' }}
+    />
+  );
+}
+```
+
+### Using the `ClientList` Component
+
+#### TypeScript
+```tsx
+import { ClientList } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <ClientList
+      className="custom-list"
+      clientClassName="custom-client"
+      avatarClassName="custom-avatar"
+      backgroundClassName="custom-background"
+      textClassName="custom-text"
+      style={{ margin: '20px' }}
+    />
+  );
+}
+```
+
+#### JavaScript
+```jsx
+import { ClientList } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <ClientList
+      className="custom-list"
+      clientClassName="custom-client"
+      avatarClassName="custom-avatar"
+      backgroundClassName="custom-background"
+      textClassName="custom-text"
+      style={{ margin: '20px' }}
+    />
+  );
+}
+```
+
+### Using the `ClientCardLG` Component
+
+#### TypeScript
+```tsx
+import { ClientCardLG } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <ClientCardLG
+      clientId="example-client-id"
+      cardClassName="custom-card-lg"
+      bannerClassName="custom-banner"
+      avatarClassName="custom-avatar"
+      nameClassName="custom-name"
+      style={{ boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}
+    />
+  );
+}
+```
+
+#### JavaScript
+```jsx
+import { ClientCardLG } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <ClientCardLG
+      clientId="example-client-id"
+      cardClassName="custom-card-lg"
+      bannerClassName="custom-banner"
+      avatarClassName="custom-avatar"
+      nameClassName="custom-name"
+      style={{ boxShadow: '0 0 10px rgba(0,0,0,0.1)' }}
+    />
+  );
+}
+```
+
+### Using the `ClientCardSM` Component
+
+#### TypeScript
+```tsx
+import { ClientCardSM } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <ClientCardSM
+      clientId="example-client-id"
+      cardClassName="custom-card-sm"
+      bannerClassName="custom-banner"
+      avatarClassName="custom-avatar"
+      nameClassName="custom-name"
+      style={{ boxShadow: '0 0 5px rgba(0,0,0,0.1)' }}
+    />
+  );
+}
+```
+
+#### JavaScript
+```jsx
+import { ClientCardSM } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <ClientCardSM
+      clientId="example-client-id"
+      cardClassName="custom-card-sm"
+      bannerClassName="custom-banner"
+      avatarClassName="custom-avatar"
+      nameClassName="custom-name"
+      style={{ boxShadow: '0 0 5px rgba(0,0,0,0.1)' }}
+    />
+  );
+}
+```
 
 ## API Docs
 
@@ -250,10 +444,46 @@ export default function Home() {
       - <code>trial</code>: <strong>Default</strong>: true (Optional)<br>
       - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)<br>
       - <code>className</code>, <code>errorClassName</code>, <code>loadingClassName</code>, <code>tableClassName</code>, <code>headerClassName</code>, <code>rowClassName</code>, <code>badgeClassName</code>, <code>titleClassName</code>, <code>textClassName</code> (Optional)<br>
-      - <code>badgeIcon</code>: String representing the badge icon, can be a URL to an image (e.g., SVG, PNG, GIF), a local image path, or a text string. (Optional)<br>
+      - <code>badge_icon</code>: String representing the badge icon, can be a URL to an image (e.g., SVG, PNG, GIF), a local image path, or a text string. (Optional)<br>
       - <code>style</code>: Custom inline styles (Optional)
     </td>
   </tr>
+  <tr>
+    <td><code>UserList</code></td>
+    <td>Renders a grid of users with customizable styles.</td>
+    <td>
+      - <code>client</code>: The client ID. (Required)<br>
+      - <code>containerClassName</code>, <code>userClassName</code>, <code>textClassName</code>: CSS class names. (Optional).<br>
+      - <code>style</code>: Inline styles for the main container. (Optional).
+    </td>
+  </tr>
+  <tr>
+    <td><code>ClientList</code></td>
+    <td>Renders a list of clients with all provided properties.</td>
+    <td>
+      - <code>className</code>, <code>clientClassName</code>, <code>avatarClassName</code>, <code>backgroundClassName</code>, <code>textClassName</code>: CSS class names. (Optional).<br>
+      - <code>style</code>: Inline styles for the main container. (Optional).
+    </td>
+  </tr>
+  <tr>
+    <td><code>ClientCardLG</code></td>
+    <td>Renders a larger profile card for a client.</td>
+    <td>
+      - <code>clientId</code>: Client ID to fetch client data. (Required)<br>
+      - <code>cardClassName</code>, <code>bannerClassName</code>, <code>avatarClassName</code>, <code>nameClassName</code>: CSS class names. (Optional).<br>
+      - <code>style</code>: Inline styles for the card container. (Optional).
+    </td>
+  </tr>
+  <tr>
+    <td><code>ClientCardSM</code></td>
+    <td>Renders a smaller profile card for a client, including the banner.</td>
+    <td>
+      - <code>clientId</code>: Client ID to fetch client data. (Required)<br>
+      - <code>cardClassName</code>, <code>bannerClassName</code>, <code>avatarClassName</code>, <code>nameClassName</code>: CSS class names. (Optional).<br>
+      - <code>style</code>: Inline styles for the card container. (Optional).
+    </td>
+  </tr>
+</table>
 </table>
 
 ### Types

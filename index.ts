@@ -2,7 +2,7 @@
 import axios, { AxiosError } from 'axios';
 import { LeaderboardResponse, ClientListResponse, PublicClientUserListResponse, LeaderboardOptions, ErrorResponse } from './types';
 export * from './types';
-export { Leaderboard } from './Leaderboard';
+export { Leaderboard, ClientList, UserList, ClientCardLG, ClientCardSM } from './components'; 
 
 /** 
  * Base URLs for the API endpoints.
