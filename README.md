@@ -6,6 +6,14 @@
 
 This package is designed to offer an accessible and efficient interface for the [Tribe](https://mytriberewards.com/) Leaderboard API. It encompasses a React component for visualizing leaderboards and a set of functions that were intended to facilitate various interactions with the API endpoints.
 
+## Project To-Do List
+
+- [ ] Fix components' default UI for each component
+- [ ] Fix small errors/consistency in props/options
+- [ ] Fix docs to be super efficient and explanatory
+- [ ] Build more components
+
+
 ## Table of Contents
 - [Installation](#installation)
 - [Usage](#usage)

@@ -39,7 +39,7 @@ const index_1 = require("../index");
  * @param {string} [loadingClassName] - CSS class for loading messages. Optional.
  * @param {React.CSSProperties} [style] - Inline styles for the main container. Optional.
  */
-const Leaderboard = ({ client, timePeriod = 'all', trial, badgeFilter, className, errorClassName, loadingClassName, tableClassName, titleClassName, textClassName, headerClassName, rowClassName, badgeClassName, badge_icon = '✔️', style, }) => {
+const Leaderboard = ({ client, timePeriod, trial, badgeFilter, className, errorClassName, loadingClassName, tableClassName, titleClassName, textClassName, headerClassName, rowClassName, badgeClassName, badge_icon = '✔️', style, }) => {
     const [leaderboardData, setLeaderboardData] = (0, react_1.useState)(null);
     const [error, setError] = (0, react_1.useState)(null);
     /**

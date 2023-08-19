@@ -16,7 +16,7 @@ import { getLeaderboard, LeaderboardProps, LeaderboardResponse } from '../index'
  */
 export const Leaderboard: React.FC<LeaderboardProps> = ({
   client,
-  timePeriod = 'all',
+  timePeriod,
   trial,
   badgeFilter,
   className,
