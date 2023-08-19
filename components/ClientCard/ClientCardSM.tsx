@@ -1,6 +1,7 @@
 // components/ClientCard/ClientCardSM.tsx
 import React, { useEffect, useState } from 'react';
 import { getClientList, ClientData } from '../../index';
+import { ClientCardProps } from '../../types';
 
 /**
  * The ClientCardSM component renders a smaller profile card for a client, including the banner.
@@ -12,7 +13,7 @@ import { getClientList, ClientData } from '../../index';
  * @param {React.CSSProperties} [style] - Inline styles for the card container. Optional.
  * @returns A React component that renders a compact client profile card with a banner.
  */
-export const ClientCardSM: React.FC<{ clientId: string, cardClassName?: string, bannerClassName?: string, avatarClassName?: string, nameClassName?: string, style?: React.CSSProperties }> = ({
+export const ClientCardSM: React.FC<ClientCardProps>  = ({
   clientId,
   cardClassName = '',
   bannerClassName = '',

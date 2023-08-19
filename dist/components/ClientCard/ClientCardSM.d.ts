@@ -1,4 +1,5 @@
 import React from 'react';
+import { ClientCardProps } from '../../types';
 /**
  * The ClientCardSM component renders a smaller profile card for a client, including the banner.
  * @param {string} clientId - The client ID to fetch client data. Required.
@@ -9,11 +10,4 @@ import React from 'react';
  * @param {React.CSSProperties} [style] - Inline styles for the card container. Optional.
  * @returns A React component that renders a compact client profile card with a banner.
  */
-export declare const ClientCardSM: React.FC<{
-    clientId: string;
-    cardClassName?: string;
-    bannerClassName?: string;
-    avatarClassName?: string;
-    nameClassName?: string;
-    style?: React.CSSProperties;
-}>;
+export declare const ClientCardSM: React.FC<ClientCardProps>;
