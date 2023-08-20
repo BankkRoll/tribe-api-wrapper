@@ -37,7 +37,7 @@ Monthly.args = {
 export const CustomBadge = Template.bind({});
 CustomBadge.args = {
   ...Default.args,
-  badge_icon: 'static/media/public/images/TRIBENFTCO.png',
+  badge_icon: './assets/TRIBENFTCO.png',
 };
 
 export const WithBadgeFilter = Template.bind({});
@@ -49,7 +49,7 @@ WithBadgeFilter.args = {
 export const CustomStyling = Template.bind({});
 CustomStyling.args = {
   ...Default.args,
-  badge_icon: 'static/media/public/images/TRIBENFTCO.png',
+  badge_icon: './assets/TRIBENFTCO.png',
   badgeFilter: false,
   className: 'custom-class',
   errorClassName: 'error-class',

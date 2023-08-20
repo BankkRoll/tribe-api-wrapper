@@ -34,7 +34,7 @@ exports.Monthly.args = {
 exports.CustomBadge = Template.bind({});
 exports.CustomBadge.args = {
     ...exports.Default.args,
-    badge_icon: 'static/media/public/images/TRIBENFTCO.png',
+    badge_icon: './assets/TRIBENFTCO.png',
 };
 exports.WithBadgeFilter = Template.bind({});
 exports.WithBadgeFilter.args = {
@@ -44,7 +44,7 @@ exports.WithBadgeFilter.args = {
 exports.CustomStyling = Template.bind({});
 exports.CustomStyling.args = {
     ...exports.Default.args,
-    badge_icon: 'static/media/public/images/TRIBENFTCO.png',
+    badge_icon: './assets/TRIBENFTCO.png',
     badgeFilter: false,
     className: 'custom-class',
     errorClassName: 'error-class',
