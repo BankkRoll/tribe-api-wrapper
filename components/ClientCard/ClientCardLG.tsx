@@ -17,7 +17,6 @@ export const ClientCardLG: React.FC<ClientCardProps> = ({
   cardClassName = '',
   bannerClassName = '',
   avatarClassName = '',
-  nameClassName = '',
   style,
 }) => {
   const [client, setClient] = useState<ClientData | null>(null);
@@ -38,13 +37,8 @@ export const ClientCardLG: React.FC<ClientCardProps> = ({
 
   return (
     <div className={`client-card client-card-lg ${cardClassName}`} style={{ border: '1px solid #ccc', ...style }}>
-      <div className={`client-banner ${bannerClassName}`} style={{ height: '100px', backgroundImage: `url(${client.background})`, position: 'relative' }}>
-        <img src={client.avatar} className={`client-avatar ${avatarClassName}`} alt={`${client.client} avatar`} style={{ width: '50px', borderRadius: '25px', position: 'absolute', bottom: '-25px', left: '10%' }} />
-        <div className={`client-info`} style={{ marginLeft: '70px' }}>
-          <h2 className={`client-name ${nameClassName}`}>{client.client}</h2>
-          <p>Trial: {client.trial ? 'Yes' : 'No'}</p>
-          <p>Is Hidden: {client.is_hidden ? 'Yes' : 'No'}</p>
-        </div>
+      <div className={`client-banner ${bannerClassName}`} style={{ height: '300px', backgroundImage: `url(${client.background})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+        <img src={client.avatar} className={`client-avatar ${avatarClassName}`} alt={`${client.client} avatar`} style={{ width: '150px', borderRadius: '30px', position: 'absolute', bottom: '-80px', left: '10%', zIndex: 2 }} />
       </div>
     </div>
   );

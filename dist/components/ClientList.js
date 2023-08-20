@@ -59,18 +59,19 @@ const ClientList = ({ className = '', clientClassName = '', avatarClassName = ''
     if (isLoading) {
         return react_1.default.createElement("div", null, "Loading...");
     }
-    return (react_1.default.createElement("div", { className: className, style: style }, clients.map((client) => (react_1.default.createElement("div", { className: clientClassName, key: client.client },
-        react_1.default.createElement("p", { className: textClassName },
-            "Client: ",
-            client.client),
-        react_1.default.createElement("img", { src: client.avatar, className: avatarClassName, alt: `${client.client} avatar` }),
-        react_1.default.createElement("img", { src: client.background, className: backgroundClassName, alt: `${client.client} background` }),
-        react_1.default.createElement("p", { className: textClassName },
-            "Trial: ",
-            client.trial ? 'Yes' : 'No'),
-        react_1.default.createElement("p", { className: textClassName },
-            "Is Hidden: ",
-            client.is_hidden ? 'Yes' : 'No'))))));
+    return (react_1.default.createElement("div", { className: className, style: { display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', ...style } }, clients.map((client) => (react_1.default.createElement("div", { className: clientClassName, key: client.client, style: { borderRadius: '10px', overflow: 'hidden', border: '1px solid #ccc', display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+        react_1.default.createElement("div", { className: backgroundClassName, style: { height: '100px', width: '100%', backgroundImage: `url(${client.background})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' } },
+            react_1.default.createElement("img", { src: client.avatar, className: avatarClassName, alt: `${client.client} avatar`, style: { width: '50px', borderRadius: '25px', position: 'absolute', bottom: '-25px', left: '50%', transform: 'translateX(-50%)', zIndex: 2 } })),
+        react_1.default.createElement("div", { style: { padding: '10px' } },
+            react_1.default.createElement("p", { className: textClassName, style: { fontWeight: 'bold', marginBottom: '5px' } },
+                "Client: ",
+                client.client),
+            react_1.default.createElement("p", { className: textClassName, style: { fontSize: '12px', color: '#666' } },
+                "Trial: ",
+                client.trial ? 'Yes' : 'No'),
+            react_1.default.createElement("p", { className: textClassName, style: { fontSize: '12px', color: '#666' } },
+                "Is Hidden: ",
+                client.is_hidden ? 'Yes' : 'No')))))));
 };
 exports.ClientList = ClientList;
 //# sourceMappingURL=ClientList.js.map

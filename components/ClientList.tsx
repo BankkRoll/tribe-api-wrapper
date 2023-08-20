@@ -52,14 +52,17 @@ export const ClientList: React.FC<{
   }
 
   return (
-    <div className={className} style={style}>
+    <div className={className} style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))', gap: '20px', ...style }}>
       {clients.map((client) => (
-        <div className={clientClassName} key={client.client}>
-          <p className={textClassName}>Client: {client.client}</p>
-          <img src={client.avatar} className={avatarClassName} alt={`${client.client} avatar`} />
-          <img src={client.background} className={backgroundClassName} alt={`${client.client} background`} />
-          <p className={textClassName}>Trial: {client.trial ? 'Yes' : 'No'}</p>
-          <p className={textClassName}>Is Hidden: {client.is_hidden ? 'Yes' : 'No'}</p>
+        <div className={clientClassName} key={client.client} style={{ borderRadius: '10px', overflow: 'hidden', border: '1px solid #ccc', display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
+          <div className={backgroundClassName} style={{ height: '100px', width: '100%', backgroundImage: `url(${client.background})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' }}>
+            <img src={client.avatar} className={avatarClassName} alt={`${client.client} avatar`} style={{ width: '50px', borderRadius: '25px', position: 'absolute', bottom: '-25px', left: '50%', transform: 'translateX(-50%)', zIndex: 2 }} />
+          </div>
+          <div style={{ padding: '10px' }}>
+            <p className={textClassName} style={{ fontWeight: 'bold', marginBottom: '5px' }}>Client: {client.client}</p>
+            <p className={textClassName} style={{ fontSize: '12px', color: '#666' }}>Trial: {client.trial ? 'Yes' : 'No'}</p>
+            <p className={textClassName} style={{ fontSize: '12px', color: '#666' }}>Is Hidden: {client.is_hidden ? 'Yes' : 'No'}</p>
+          </div>
         </div>
       ))}
     </div>

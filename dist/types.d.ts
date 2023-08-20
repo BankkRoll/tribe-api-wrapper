@@ -9,7 +9,7 @@ export interface LeaderboardData {
 }
 /** Options to customize the leaderboard fetch */
 export interface LeaderboardOptions {
-    timePeriod?: "all" | "week" | "month";
+    timePeriod?: "" | "week" | "month";
     trial?: boolean;
     badgeFilter?: boolean;
 }

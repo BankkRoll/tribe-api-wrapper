@@ -8,7 +8,7 @@ This package is designed to offer an accessible and efficient interface for the 
 
 ## Project To-Do List
 
-- [ ] Fix components' default UI for each component
+- [x] Fix components' default UI for each component
 - [ ] Fix small errors/consistency in props/options
 - [ ] Fix docs to be super efficient and explanatory
 - [ ] Build more components

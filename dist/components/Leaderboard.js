@@ -31,7 +31,7 @@ const index_1 = require("../index");
  * The Leaderboard component.
  * Renders the leaderboard for the given client and provides options for customization.
  * @param {string} client - The client ID. Required.
- * @param {string} [timePeriod='all'] - Filter by time period ('all', 'week', or 'month'). Optional.
+ * @param {string} [timePeriod=''] - Filter by time period ('', 'week', or 'month'). Optional.
  * @param {boolean} [trial=true] - A boolean value to include/exclude trial data. Optional.
  * @param {boolean} [badgeFilter=false] - A boolean value to filter by badges. Optional.
  * @param {string} [className] - CSS class for the main container. Optional.
@@ -39,7 +39,7 @@ const index_1 = require("../index");
  * @param {string} [loadingClassName] - CSS class for loading messages. Optional.
  * @param {React.CSSProperties} [style] - Inline styles for the main container. Optional.
  */
-const Leaderboard = ({ client, timePeriod, trial, badgeFilter, className, errorClassName, loadingClassName, tableClassName, titleClassName, textClassName, headerClassName, rowClassName, badgeClassName, badge_icon = '✔️', style, }) => {
+const Leaderboard = ({ client, timePeriod, trial, badgeFilter, className, errorClassName, loadingClassName, tableClassName, titleClassName, textClassName, headerClassName, rowClassName, badgeClassName, badge_icon = 'static/media/public/images/TRIBENFTCO.png', style, }) => {
     const [leaderboardData, setLeaderboardData] = (0, react_1.useState)(null);
     const [error, setError] = (0, react_1.useState)(null);
     /**
@@ -72,24 +72,27 @@ const Leaderboard = ({ client, timePeriod, trial, badgeFilter, className, errorC
      * Displays an error message if there is an issue fetching the data.
      * Lists users with their usernames and total points.
      */
-    return (react_1.default.createElement("div", { className: className, style: style }, error ? (react_1.default.createElement("div", { className: `${errorClassName} ${textClassName}` },
-        "Error: ",
-        error)) : leaderboardData && Array.isArray(leaderboardData.data) ? (react_1.default.createElement("table", { className: tableClassName },
-        react_1.default.createElement("thead", { className: headerClassName },
-            react_1.default.createElement("tr", null,
-                react_1.default.createElement("th", { className: titleClassName }, "Member"),
-                react_1.default.createElement("th", { className: titleClassName }, "Twitter Points"),
-                react_1.default.createElement("th", { className: titleClassName }, "Content Points"),
-                react_1.default.createElement("th", { className: titleClassName }, "Total Earned"))),
-        react_1.default.createElement("tbody", null, leaderboardData.data.map((user) => (react_1.default.createElement("tr", { key: user.username, className: rowClassName },
-            react_1.default.createElement("td", { className: textClassName },
-                user.has_badge ? react_1.default.createElement("span", { className: badgeClassName },
-                    react_1.default.createElement("img", { src: badge_icon, alt: "badge" })) : '',
-                " ",
-                user.username),
-            react_1.default.createElement("td", { className: textClassName }, user.twitter_points),
-            react_1.default.createElement("td", { className: textClassName }, user.content_points),
-            react_1.default.createElement("td", { className: textClassName }, user.total_points))))))) : (react_1.default.createElement("div", { className: `${loadingClassName} ${textClassName}` }, "Loading..."))));
+    return (react_1.default.createElement("div", { className: `${className} leaderboard-container`, style: { borderRadius: '10px', border: '1px solid #e1e1e1', padding: '20px', overflow: 'hidden', background: '#f7f7f7', ...style } },
+        react_1.default.createElement("h3", { style: { margin: '0 0 15px', fontWeight: '600' } },
+            client,
+            " Leaderboard"),
+        error ? (react_1.default.createElement("div", { className: `${errorClassName} ${textClassName}`, style: { color: '#d9534f', fontWeight: '500' } },
+            "Error: ",
+            error)) : leaderboardData && Array.isArray(leaderboardData.data) ? (react_1.default.createElement("table", { className: tableClassName, style: { width: '100%', borderCollapse: 'collapse' } },
+            react_1.default.createElement("thead", { className: headerClassName },
+                react_1.default.createElement("tr", { style: { borderBottom: '1px solid #d1d1d1', fontWeight: '500', fontSize: '14px', color: '#555' } },
+                    react_1.default.createElement("th", { className: titleClassName }, "Member"),
+                    react_1.default.createElement("th", { className: titleClassName }, "Twitter Points"),
+                    react_1.default.createElement("th", { className: titleClassName }, "Content Points"),
+                    react_1.default.createElement("th", { className: titleClassName }, "Total Earned"))),
+            react_1.default.createElement("tbody", null, leaderboardData.data.map((user, index) => (react_1.default.createElement("tr", { key: user.username, className: rowClassName, style: { backgroundColor: index % 2 === 0 ? '#f9f9f9' : '#fff', padding: '15px 0', lineHeight: '1.5' } },
+                react_1.default.createElement("td", { className: textClassName, style: { display: 'flex', alignItems: 'center', fontSize: '14px', color: '#333' } },
+                    user.has_badge ? (react_1.default.createElement("span", { className: badgeClassName, style: { marginRight: '10px' } },
+                        react_1.default.createElement("img", { src: badge_icon, alt: "badge", style: { width: '20px', height: '20px' } }))) : '',
+                    user.username),
+                react_1.default.createElement("td", { className: textClassName, style: { fontSize: '14px', color: '#333' } }, user.twitter_points),
+                react_1.default.createElement("td", { className: textClassName, style: { fontSize: '14px', color: '#333' } }, user.content_points),
+                react_1.default.createElement("td", { className: textClassName, style: { fontSize: '14px', color: '#333' } }, user.total_points))))))) : (react_1.default.createElement("div", { className: `${loadingClassName} ${textClassName}`, style: { color: '#666', fontStyle: 'italic', fontSize: '14px' } }, "Loading..."))));
 };
 exports.Leaderboard = Leaderboard;
 //# sourceMappingURL=Leaderboard.js.map

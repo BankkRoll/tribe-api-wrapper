@@ -45,11 +45,11 @@ export const getLeaderboard = async (
     return new ValidationError('Client parameter is required.');
   }
 
-  const { timePeriod = 'all', trial = true, badgeFilter = false } = options || {};
+  const { timePeriod = '', trial = true, badgeFilter = false } = options || {};
 
-  const url = `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}${
-    timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''
-  }`;
+  // Construct the URL, always including time_period, even if it's an empty string
+  const url = `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}&time_period=${encodeURIComponent(timePeriod)}`;
+
 
   try {
     const response = await axios.get<LeaderboardResponse>(url);
@@ -82,7 +82,7 @@ export const getClientList = async (): Promise<ClientListResponse | Error> => {
  * Fetches the public client user list for the given client.
  * @param {string} client - The client ID.
  * @param {Object} [options] - An optional object containing additional parameters like time period and badge filter.
- * @param {string} [options.timePeriod='all'] - A filter by time period ('all', 'week', or 'month').
+ * @param {string} [options.timePeriod=''] - A filter by time period ('all', 'week', or 'month').
  * @param {boolean} [options.badgeFilter=false] - A boolean value to filter by badges.
  * @returns {Promise<PublicClientUserListResponse | Error>} A promise that resolves to the public client user list or an error.
  */
@@ -94,7 +94,7 @@ export const getPublicClientUserList = async (
       return new ValidationError('Client parameter is required.');
     }
 
-    const { timePeriod = 'all', badgeFilter = false } = options || {};
+    const { timePeriod = '', badgeFilter = false } = options || {};
 
     const url = `${PUBLIC_CLIENT_USER_LIST_URL}${encodeURIComponent(client)}${
       timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''

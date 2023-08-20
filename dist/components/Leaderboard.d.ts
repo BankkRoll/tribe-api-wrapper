@@ -4,7 +4,7 @@ import { LeaderboardProps } from '../index';
  * The Leaderboard component.
  * Renders the leaderboard for the given client and provides options for customization.
  * @param {string} client - The client ID. Required.
- * @param {string} [timePeriod='all'] - Filter by time period ('all', 'week', or 'month'). Optional.
+ * @param {string} [timePeriod=''] - Filter by time period ('', 'week', or 'month'). Optional.
  * @param {boolean} [trial=true] - A boolean value to include/exclude trial data. Optional.
  * @param {boolean} [badgeFilter=false] - A boolean value to filter by badges. Optional.
  * @param {string} [className] - CSS class for the main container. Optional.

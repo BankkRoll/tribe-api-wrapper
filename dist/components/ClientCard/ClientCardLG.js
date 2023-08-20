@@ -36,7 +36,7 @@ const index_1 = require("../../index");
  * @param {React.CSSProperties} [style] - Inline styles for the card container. Optional.
  * @returns A React component that renders a compact client profile card.
  */
-const ClientCardLG = ({ clientId, cardClassName = '', bannerClassName = '', avatarClassName = '', nameClassName = '', style, }) => {
+const ClientCardLG = ({ clientId, cardClassName = '', bannerClassName = '', avatarClassName = '', style, }) => {
     const [client, setClient] = (0, react_1.useState)(null);
     /**
      * Fetches client card data from API
@@ -52,16 +52,8 @@ const ClientCardLG = ({ clientId, cardClassName = '', bannerClassName = '', avat
     if (!client)
         return react_1.default.createElement("div", null, "Loading...");
     return (react_1.default.createElement("div", { className: `client-card client-card-lg ${cardClassName}`, style: { border: '1px solid #ccc', ...style } },
-        react_1.default.createElement("div", { className: `client-banner ${bannerClassName}`, style: { height: '100px', backgroundImage: `url(${client.background})`, position: 'relative' } },
-            react_1.default.createElement("img", { src: client.avatar, className: `client-avatar ${avatarClassName}`, alt: `${client.client} avatar`, style: { width: '50px', borderRadius: '25px', position: 'absolute', bottom: '-25px', left: '10%' } }),
-            react_1.default.createElement("div", { className: `client-info`, style: { marginLeft: '70px' } },
-                react_1.default.createElement("h2", { className: `client-name ${nameClassName}` }, client.client),
-                react_1.default.createElement("p", null,
-                    "Trial: ",
-                    client.trial ? 'Yes' : 'No'),
-                react_1.default.createElement("p", null,
-                    "Is Hidden: ",
-                    client.is_hidden ? 'Yes' : 'No')))));
+        react_1.default.createElement("div", { className: `client-banner ${bannerClassName}`, style: { height: '300px', backgroundImage: `url(${client.background})`, backgroundSize: 'cover', backgroundPosition: 'center', position: 'relative' } },
+            react_1.default.createElement("img", { src: client.avatar, className: `client-avatar ${avatarClassName}`, alt: `${client.client} avatar`, style: { width: '150px', borderRadius: '30px', position: 'absolute', bottom: '-80px', left: '10%', zIndex: 2 } }))));
 };
 exports.ClientCardLG = ClientCardLG;
 //# sourceMappingURL=ClientCardLG.js.map

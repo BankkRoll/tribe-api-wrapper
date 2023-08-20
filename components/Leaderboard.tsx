@@ -6,7 +6,7 @@ import { getLeaderboard, LeaderboardProps, LeaderboardResponse } from '../index'
  * The Leaderboard component.
  * Renders the leaderboard for the given client and provides options for customization.
  * @param {string} client - The client ID. Required.
- * @param {string} [timePeriod='all'] - Filter by time period ('all', 'week', or 'month'). Optional.
+ * @param {string} [timePeriod=''] - Filter by time period ('', 'week', or 'month'). Optional.
  * @param {boolean} [trial=true] - A boolean value to include/exclude trial data. Optional.
  * @param {boolean} [badgeFilter=false] - A boolean value to filter by badges. Optional.
  * @param {string} [className] - CSS class for the main container. Optional.
@@ -28,7 +28,7 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
   headerClassName,
   rowClassName,
   badgeClassName,
-  badge_icon = '✔️',
+  badge_icon = 'static/media/public/images/TRIBENFTCO.png',
   style,
 }) => {
   const [leaderboardData, setLeaderboardData] = useState<LeaderboardResponse | null>(null);
@@ -67,13 +67,14 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
    * Lists users with their usernames and total points.
    */
   return (
-    <div className={className} style={style}>
+    <div className={`${className} leaderboard-container`} style={{ borderRadius: '10px', border: '1px solid #e1e1e1', padding: '20px', overflow: 'hidden', background: '#f7f7f7', ...style }}>
+      <h3 style={{ margin: '0 0 15px', fontWeight: '600' }}>{client} Leaderboard</h3>
       {error ? (
-        <div className={`${errorClassName} ${textClassName}`}>Error: {error}</div>
+        <div className={`${errorClassName} ${textClassName}`} style={{ color: '#d9534f', fontWeight: '500' }}>Error: {error}</div>
       ) : leaderboardData && Array.isArray(leaderboardData.data) ? (
-        <table className={tableClassName}>
+        <table className={tableClassName} style={{ width: '100%', borderCollapse: 'collapse' }}>
           <thead className={headerClassName}>
-            <tr>
+            <tr style={{ borderBottom: '1px solid #d1d1d1', fontWeight: '500', fontSize: '14px', color: '#555' }}>
               <th className={titleClassName}>Member</th>
               <th className={titleClassName}>Twitter Points</th>
               <th className={titleClassName}>Content Points</th>
@@ -81,21 +82,27 @@ export const Leaderboard: React.FC<LeaderboardProps> = ({
             </tr>
           </thead>
           <tbody>
-            {leaderboardData.data.map((user) => (
-              <tr key={user.username} className={rowClassName}>
-                <td className={textClassName}>
-                  {user.has_badge ? <span className={badgeClassName}><img src={badge_icon} alt="badge" /></span> : ''} {user.username}
+            {leaderboardData.data.map((user, index) => (
+              <tr key={user.username} className={rowClassName} style={{ backgroundColor: index % 2 === 0 ? '#f9f9f9' : '#fff', padding: '15px 0', lineHeight: '1.5' }}>
+                <td className={textClassName} style={{ display: 'flex', alignItems: 'center', fontSize: '14px', color: '#333' }}>
+                  {user.has_badge ? (
+                    <span className={badgeClassName} style={{ marginRight: '10px' }}>
+                      <img src={badge_icon} alt="badge" style={{ width: '20px', height: '20px' }} />
+                    </span>
+                  ) : ''} 
+                  {user.username}
                 </td>
-                <td className={textClassName}>{user.twitter_points}</td>
-                <td className={textClassName}>{user.content_points}</td>
-                <td className={textClassName}>{user.total_points}</td>
+                <td className={textClassName} style={{ fontSize: '14px', color: '#333' }}>{user.twitter_points}</td>
+                <td className={textClassName} style={{ fontSize: '14px', color: '#333' }}>{user.content_points}</td>
+                <td className={textClassName} style={{ fontSize: '14px', color: '#333' }}>{user.total_points}</td>
               </tr>
             ))}
           </tbody>
         </table>
       ) : (
-        <div className={`${loadingClassName} ${textClassName}`}>Loading...</div>
+        <div className={`${loadingClassName} ${textClassName}`} style={{ color: '#666', fontStyle: 'italic', fontSize: '14px' }}>Loading...</div>
       )}
     </div>
-  );  
+  );
+  
 };

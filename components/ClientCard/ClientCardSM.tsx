@@ -18,7 +18,6 @@ export const ClientCardSM: React.FC<ClientCardProps>  = ({
   cardClassName = '',
   bannerClassName = '',
   avatarClassName = '',
-  nameClassName = '',
   style,
 }) => {
   const [client, setClient] = useState<ClientData | null>(null);
@@ -38,13 +37,9 @@ export const ClientCardSM: React.FC<ClientCardProps>  = ({
   if (!client) return <div>Loading...</div>;
 
   return (
-    <div className={`client-card client-card-sm ${cardClassName}`} style={style}>
-      <div className={`client-banner ${bannerClassName}`} style={{ height: '50px', backgroundImage: `url(${client.background})`, position: 'relative' }}>
-        <img src={client.avatar} className={`client-avatar ${avatarClassName}`} alt={`${client.client} avatar`} style={{ width: '30px', borderRadius: '15px', position: 'absolute', bottom: '-15px', left: '10%' }} />
-        <div className={`client-info`} style={{ marginLeft: '40px' }}>
-          <h3 className={`client-name ${nameClassName}`}>{client.client}</h3>
-          <p>Trial: {client.trial ? 'Yes' : 'No'}</p>
-        </div>
+    <div className={`client-card client-card-sm ${cardClassName}`} style={{ ...style, width: '200px', border: '1px solid #ccc', position: 'relative' }}>
+      <div className={`client-banner ${bannerClassName}`} style={{ height: '200px', backgroundImage: `url(${client.background})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <img src={client.avatar} className={`client-avatar ${avatarClassName}`} alt={`${client.client} avatar`} style={{ width: '50px', borderRadius: '25px', position: 'absolute', bottom: '-25px', left: '50%', transform: 'translateX(-50%)', zIndex: 2 }} />
       </div>
     </div>
   );
