@@ -28,7 +28,7 @@
     "format": "prettier --write 'src/**/*.{ts,tsx}'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -c /vercel/path0/.storybook",
+    "build-storybook": "storybook build",
     "serve-storybook": "npx serve storybook-static",
     "now-build": "npm run build-storybook"
   },
