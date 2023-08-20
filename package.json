@@ -28,7 +28,8 @@
     "format": "prettier --write 'src/**/*.{ts,tsx}'",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build -c .storybook",
+    "build-storybook": "storybook build",
+    "serve-storybook": "npx serve storybook-static",
     "now-build": "npm run build-storybook"
   },
   "author": "bankkroll",
@@ -48,6 +49,7 @@
     "@storybook/addon-links": "^7.3.2",
     "@storybook/addon-onboarding": "^1.0.8",
     "@storybook/blocks": "^7.3.2",
+    "@storybook/cli": "^7.3.2",
     "@storybook/react": "^7.3.2",
     "@storybook/react-webpack5": "^7.3.2",
     "@storybook/testing-library": "^0.2.0",
