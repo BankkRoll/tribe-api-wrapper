@@ -43,7 +43,7 @@ const UserList = ({ client, containerClassName, userClassName, textClassName, st
         const fetchUsers = async () => {
             const result = await (0, index_1.getPublicClientUserList)(client);
             if (result && !('message' in result)) {
-                setUsers(result.data); // Directly set the data as users
+                setUsers(result.data);
             }
             setLoading(false);
         };
@@ -53,7 +53,6 @@ const UserList = ({ client, containerClassName, userClassName, textClassName, st
             maxWidth: '100%',
             width: '300px',
             padding: '20px',
-            background: '#f7f7f7',
             borderRadius: '10px',
             overflowY: 'auto',
             height: '300px',

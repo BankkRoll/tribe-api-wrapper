@@ -8,7 +8,9 @@ This package is designed to offer an accessible and efficient interface for the 
 
 ## Project To-Do List
 
-- [x] Fix components' default UI for each component
+Test live now in <a href='https://tribe-api-wrapper.vercel.app/'>storybook</a>
+
+- [ ] Update storybook build out
 - [ ] Fix small errors/consistency in props/options
 - [ ] Fix docs to be super efficient and explanatory
 - [ ] Build more components
@@ -47,6 +49,7 @@ This package is designed to offer an accessible and efficient interface for the 
 - [Types](#types)
 - [Contributing](#contributing)
 - [License](#license)
+- [Links](#links)
 - [Disclaimer](#disclaimer)
 
 ## Installation
@@ -502,6 +505,13 @@ Contributions are welcome! Please follow the [contributing guidelines](CONTRIBUT
 
 ## License
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## Links
+
+- [GitHub](https://github.com/BankkRoll/tribe-api-wrapper)
+- [npm](https://www.npmjs.com/package/tribe-api-wrapper)
+- [storybook](https://tribe-api-wrapper.vercel.app/)
+- [developer](https://x.com/bankkroll_eth)
 
 ## Disclaimer
 Please note that this library was developed independently and is not associated with or endorsed by [Tribe](https://mytriberewards.com/). It is intended for responsible and ethical use and is not designed to violate or circumvent Tribe's terms of service.

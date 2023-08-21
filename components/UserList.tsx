@@ -26,7 +26,7 @@ export const UserList: React.FC<UserListProps & { client: string }> = ({
     const fetchUsers = async () => {
       const result = await getPublicClientUserList(client);
       if (result && !('message' in result)) {
-        setUsers(result.data); // Directly set the data as users
+        setUsers(result.data);
       }
       setLoading(false);
     };
@@ -36,9 +36,8 @@ export const UserList: React.FC<UserListProps & { client: string }> = ({
   return (
     <div className={`user-list-container ${containerClassName}`} style={{
       maxWidth: '100%',
-      width: '300px', // Fixed width for larger screens
+      width: '300px',
       padding: '20px',
-      background: '#f7f7f7',
       borderRadius: '10px',
       overflowY: 'auto',
       height: '300px',

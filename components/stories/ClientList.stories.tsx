@@ -1,7 +1,7 @@
 // components/ClientList.stories.tsx
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { ClientList } from '../ClientList';
+import { ClientList } from '../index';
 
 export default {
   title: 'Components/ClientList',

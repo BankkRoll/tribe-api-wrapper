@@ -6,12 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomStyling = exports.Default = void 0;
 // components/ClientList.stories.tsx
 const react_1 = __importDefault(require("react"));
-const ClientList_1 = require("../ClientList");
+const index_1 = require("../index");
 exports.default = {
     title: 'Components/ClientList',
-    component: ClientList_1.ClientList,
+    component: index_1.ClientList,
 };
-const Template = (args) => react_1.default.createElement(ClientList_1.ClientList, { ...args });
+const Template = (args) => react_1.default.createElement(index_1.ClientList, { ...args });
 exports.Default = Template.bind({});
 exports.Default.args = {};
 exports.CustomStyling = Template.bind({});

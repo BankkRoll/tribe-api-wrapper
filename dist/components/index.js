@@ -1,7 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.UserList = exports.Leaderboard = exports.ClientList = exports.ClientCardSM = exports.ClientCardLG = void 0;
+exports.UserList = exports.Leaderboard = exports.ClientList = exports.ClientCardSM = exports.ClientCardLG = exports.ClientProfile = void 0;
 // components/index.ts
+var ClientProfile_1 = require("./ClientCard/ClientProfile");
+Object.defineProperty(exports, "ClientProfile", { enumerable: true, get: function () { return ClientProfile_1.ClientProfile; } });
 var ClientCardLG_1 = require("./ClientCard/ClientCardLG");
 Object.defineProperty(exports, "ClientCardLG", { enumerable: true, get: function () { return ClientCardLG_1.ClientCardLG; } });
 var ClientCardSM_1 = require("./ClientCard/ClientCardSM");

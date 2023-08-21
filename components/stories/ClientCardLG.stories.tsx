@@ -1,7 +1,7 @@
 // components/ClientCard/ClientCardLG.stories.tsx
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { ClientCardLG } from '../ClientCard/ClientCardLG';
+import { ClientCardLG } from '../index';
 import { ClientCardProps } from '../../types';
 
 export default {

@@ -6,7 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomStyling = exports.WithBadgeFilter = exports.CustomBadge = exports.Monthly = exports.Weekly = exports.All_Time = exports.Default = void 0;
 // components/Leaderboard.stories.tsx
 const react_1 = __importDefault(require("react"));
-const index_1 = require("../../index");
+const index_1 = require("../index");
 exports.default = {
     title: 'Components/Leaderboard',
     component: index_1.Leaderboard,

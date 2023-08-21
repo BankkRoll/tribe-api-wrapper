@@ -4,14 +4,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomStyling = exports.Default = void 0;
-// components/ClientCard/ClientCardSM.stories.tsx
+// components/ClientProfile.stories.tsx
 const react_1 = __importDefault(require("react"));
 const index_1 = require("../index");
 exports.default = {
-    title: 'Components/ClientCardSM',
-    component: index_1.ClientCardSM,
+    title: 'Components/ClientProfile',
+    component: index_1.ClientProfile,
 };
-const Template = (args) => react_1.default.createElement(index_1.ClientCardSM, { ...args });
+const Template = (args) => react_1.default.createElement(index_1.ClientProfile, { ...args });
 exports.Default = Template.bind({});
 exports.Default.args = {
     clientId: 'OD Labs',
@@ -19,10 +19,14 @@ exports.Default.args = {
 exports.CustomStyling = Template.bind({});
 exports.CustomStyling.args = {
     ...exports.Default.args,
-    cardClassName: 'custom-card-class',
+    containerClassName: 'custom-container-class',
     bannerClassName: 'custom-banner-class',
     avatarClassName: 'custom-avatar-class',
+    nameContainerClassName: 'custom-name-container-class',
     nameClassName: 'custom-name-class',
+    userListClassName: 'custom-user-list-container-class',
+    userContainerClassName: 'custom-user-container-class',
+    userClassName: 'custom-user-name-class',
     style: {
         fontFamily: "'Helvetica, Arial, sans-serif",
         textAlign: 'center',
@@ -34,4 +38,4 @@ exports.CustomStyling.args = {
         justifyContent: 'center',
     },
 };
-//# sourceMappingURL=ClientCardSM.stories.js.map
+//# sourceMappingURL=ClientProfile.stories.js.map

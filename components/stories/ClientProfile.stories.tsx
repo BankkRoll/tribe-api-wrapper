@@ -1,15 +1,16 @@
-// components/ClientCard/ClientCardSM.stories.tsx
+// components/ClientProfile.stories.tsx
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { ClientCardSM } from '../index';
-import { ClientCardProps } from '../../types';
+import { ClientProfile } from '../index';
+import { ClientProfileProps } from '../../types';
 
 export default {
-  title: 'Components/ClientCardSM',
-  component: ClientCardSM,
+  title: 'Components/ClientProfile',
+  component: ClientProfile,
 } as Meta;
 
-const Template: Story<ClientCardProps> = (args) => <ClientCardSM {...args} />;
+
+const Template: Story<ClientProfileProps> = (args) => <ClientProfile {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
@@ -19,10 +20,14 @@ Default.args = {
 export const CustomStyling = Template.bind({});
 CustomStyling.args = {
   ...Default.args,
-  cardClassName: 'custom-card-class',
+  containerClassName: 'custom-container-class',
   bannerClassName: 'custom-banner-class',
   avatarClassName: 'custom-avatar-class',
+  nameContainerClassName: 'custom-name-container-class',
   nameClassName: 'custom-name-class',
+  userListClassName: 'custom-user-list-container-class',
+  userContainerClassName: 'custom-user-container-class',
+  userClassName: 'custom-user-name-class',
   style: {
     fontFamily: "'Helvetica, Arial, sans-serif",
     textAlign: 'center',

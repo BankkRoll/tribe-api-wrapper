@@ -1,7 +1,9 @@
 // components/Leaderboard.stories.tsx
 import React from 'react';
 import { Story, Meta } from '@storybook/react';
-import { Leaderboard, LeaderboardProps } from '../../index';
+import { Leaderboard } from '../index';
+import {LeaderboardProps} from '../../types';
+
 
 export default {
   title: 'Components/Leaderboard',

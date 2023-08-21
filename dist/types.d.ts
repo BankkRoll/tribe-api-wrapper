@@ -89,3 +89,15 @@ export interface ClientCardProps {
     nameClassName?: string;
     style?: React.CSSProperties;
 }
+export interface ClientProfileProps {
+    clientId: string;
+    containerClassName?: string;
+    bannerClassName?: string;
+    avatarClassName?: string;
+    nameContainerClassName?: string;
+    nameClassName?: string;
+    userListClassName?: string;
+    userContainerClassName?: string;
+    userClassName?: string;
+    style?: React.CSSProperties;
+}

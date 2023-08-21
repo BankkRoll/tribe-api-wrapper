@@ -6,12 +6,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.CustomStyling = exports.Default = void 0;
 // components/ClientCard/ClientCardLG.stories.tsx
 const react_1 = __importDefault(require("react"));
-const ClientCardLG_1 = require("../ClientCard/ClientCardLG");
+const index_1 = require("../index");
 exports.default = {
     title: 'Components/ClientCardLG',
-    component: ClientCardLG_1.ClientCardLG,
+    component: index_1.ClientCardLG,
 };
-const Template = (args) => react_1.default.createElement(ClientCardLG_1.ClientCardLG, { ...args });
+const Template = (args) => react_1.default.createElement(index_1.ClientCardLG, { ...args });
 exports.Default = Template.bind({});
 exports.Default.args = {
     clientId: 'OD Labs',

@@ -15,9 +15,9 @@ import { ClientCardProps } from '../../types';
  */
 export const ClientCardSM: React.FC<ClientCardProps>  = ({
   clientId,
-  cardClassName = '',
-  bannerClassName = '',
-  avatarClassName = '',
+  cardClassName = 'custom-card-className',
+  bannerClassName = 'custom-banner-ClassName',
+  avatarClassName = 'custom-avatar-className',
   style,
 }) => {
   const [client, setClient] = useState<ClientData | null>(null);
