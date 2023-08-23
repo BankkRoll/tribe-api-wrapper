@@ -26,6 +26,7 @@ const preview = {
         color: /(background|color)$/i,
         date: /Date$/,
       },
+      expanded: true,
       viewMode: 'story',
       storyId: 'introduction--introduction',
     },
