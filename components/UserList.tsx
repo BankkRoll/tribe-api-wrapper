@@ -34,59 +34,93 @@ export const UserList: React.FC<UserListProps & { client: string }> = ({
   }, [client]);
 
   return (
-    <div
-      className={`user-list-container ${containerClassName}`}
-      style={{
-        maxWidth: "100%",
-        width: "300px",
-        padding: "20px",
-        borderRadius: "10px",
-        overflowY: "auto",
-        height: "300px",
-        ...style,
-      }}
-    >
-      {loading ? (
-        <p
-          style={{
-            color: "#666",
-            fontStyle: "italic",
-            fontSize: "14px",
-            textAlign: "center",
-          }}
-        >
-          Loading...
-        </p>
-      ) : (
-        users.map((user, index) => (
-          <div
-            key={index}
-            className={`user-container ${userClassName}`}
+    <div style={{ width: "300px", margin: "0 auto" }}>
+      <div
+        className={`user-list-container ${containerClassName}`}
+        style={{
+          maxWidth: "100%",
+          width: "300px",
+          padding: "20px",
+          borderRadius: "10px",
+          overflowY: "auto",
+          height: "calc(300px - 30px)", // Adjusted height to accommodate the footer
+          ...style,
+        }}
+      >
+        {loading ? (
+          <p
             style={{
-              padding: "10px",
-              background: "#fff",
-              borderRadius: "8px",
-              boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-              margin: "10px 0",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
+              color: "#666",
+              fontStyle: "italic",
+              fontSize: "14px",
+              textAlign: "center",
             }}
           >
-            <p
-              className={`user-name ${textClassName}`}
+            Loading...
+          </p>
+        ) : (
+          users.map((user, index) => (
+            <div
+              key={index}
+              className={`user-container ${userClassName}`}
               style={{
-                margin: "0",
-                fontSize: "16px",
-                color: "#333",
-                fontWeight: "500",
+                padding: "10px",
+                background: "#fff",
+                borderRadius: "8px",
+                boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
+                margin: "10px 0",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
               }}
             >
-              {user}
-            </p>
-          </div>
-        ))
-      )}
+              <p
+                className={`user-name ${textClassName}`}
+                style={{
+                  margin: "0",
+                  fontSize: "16px",
+                  color: "#333",
+                  fontWeight: "500",
+                }}
+              >
+                {user}
+              </p>
+            </div>
+          ))
+        )}
+      </div>
+      <div
+        style={{
+          textAlign: "center",
+          marginTop: "10px",
+          fontSize: "12px",
+          color: "#777",
+        }}
+      >
+        <a
+          href="https://mytriberewards.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          style={{
+            textDecoration: "none",
+            color: "#000",
+            display: "inline-flex",
+            alignItems: "center",
+          }}
+        >
+          Powered by Tribe{" "}
+          <img
+            src="https://mytriberewards.com/wp-content/uploads/2022/12/TRIBENFTCO-Logo-Black-100x100.png"
+            alt="Tribe Logo"
+            style={{
+              width: "16px",
+              height: "16px",
+              verticalAlign: "middle",
+              marginLeft: "5px",
+            }}
+          />
+        </a>
+      </div>
     </div>
   );
 };

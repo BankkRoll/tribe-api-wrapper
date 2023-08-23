@@ -43,15 +43,19 @@ export const ClientCardSM: React.FC<ClientCardProps> = ({
         width: "200px",
         border: "1px solid #ccc",
         position: "relative",
+        borderRadius: "10px",
       }}
     >
       <div
         className={`client-banner ${bannerClassName}`}
         style={{
-          height: "200px",
+          height: "150px",
           backgroundImage: `url(${client.background})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          border: "1px solid #ccc",
+          position: "relative",
+          borderRadius: "10px",
         }}
       >
         <img
@@ -60,11 +64,10 @@ export const ClientCardSM: React.FC<ClientCardProps> = ({
           alt={`${client.client} avatar`}
           style={{
             width: "50px",
-            borderRadius: "25px",
+            borderRadius: "14px",
             position: "absolute",
             bottom: "-25px",
-            left: "50%",
-            transform: "translateX(-50%)",
+            left: "10%",
             zIndex: 2,
           }}
         />

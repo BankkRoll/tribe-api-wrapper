@@ -38,7 +38,8 @@ Monthly.args = {
 export const CustomBadge = Template.bind({});
 CustomBadge.args = {
   ...Default.args,
-  badge_icon: "static/media/public/images/TRIBENFTCO.png",
+  badge_icon:
+    "https://pbs.twimg.com/profile_images/1669770046195859464/sXeMCJC9_400x400.jpg",
 };
 
 export const WithBadgeFilter = Template.bind({});

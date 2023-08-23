@@ -38,7 +38,13 @@ export const ClientCardLG: React.FC<ClientCardProps> = ({
   return (
     <div
       className={`client-card client-card-lg ${cardClassName}`}
-      style={{ border: "1px solid #ccc", ...style }}
+      style={{
+        ...style,
+        width: "200px",
+        border: "1px solid #ccc",
+        position: "relative",
+        borderRadius: "10px",
+      }}
     >
       <div
         className={`client-banner ${bannerClassName}`}
@@ -47,7 +53,9 @@ export const ClientCardLG: React.FC<ClientCardProps> = ({
           backgroundImage: `url(${client.background})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
+          border: "2px solid #ccc",
           position: "relative",
+          borderRadius: "10px",
         }}
       >
         <img

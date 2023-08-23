@@ -24,13 +24,11 @@ CustomStyling.args = {
   bannerClassName: "",
   avatarClassName: "",
   style: {
-    fontFamily: "'Helvetica, Arial, sans-serif",
+    fontFamily: "'Helvetica, Arial, sans-serif'",
     textAlign: "center",
-    borderRadius: "10px",
-    padding: "20px",
-    boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)",
-    margin: "10px 0",
-    alignItems: "center",
-    justifyContent: "center",
+    borderRadius: "15px",
+    padding: "10px",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",
+    background: "linear-gradient(135deg, #f3f3f3 0%, #e1e1e1 100%)",
   },
 };
