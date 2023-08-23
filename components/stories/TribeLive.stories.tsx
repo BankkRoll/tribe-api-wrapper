@@ -1,18 +1,21 @@
-import React from 'react';
-import { Meta } from '@storybook/react';
+import React from "react";
+import { Meta } from "@storybook/react";
 
 export default {
-  title: 'Tribe',
+  title: "Tribe",
 } as Meta;
 
 export const TribeLive = () => (
   <div>
-       <iframe
-        src="https://mytriberewards.com/"
-        width="100%"
-        height="800"
-        />
+    <iframe
+      title="Tribe Rewards"
+      src="https://mytriberewards.com/"
+      width="100%"
+      height="800"
+      sandbox="allow-scripts allow-same-origin"
+      loading="lazy"
+    />
   </div>
 );
 
-TribeLive.storyName = 'Tribe';
+TribeLive.storyName = "Tribe";

@@ -1,6 +1,6 @@
 {
   "name": "tribe-api-wrapper",
-  "version": "1.2.5",
+  "version": "1.2.8",
   "description": "Custom wrapper for tribe tracking",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -25,12 +25,13 @@
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
-    "format": "prettier --write 'src/**/*.{ts,tsx}'",
+    "format": "prettier --write \"**/*.{ts,tsx}\"",
     "test": "echo \"Error: no test specified\" && exit 1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "serve-storybook": "npx serve storybook-static",
-    "now-build": "storybook build -c .storybook"
+    "now-build": "storybook build -c .storybook",
+    "bankk": "npm run format && npm run build-storybook && npm publish"
   },
   "author": "bankkroll",
   "license": "MIT",

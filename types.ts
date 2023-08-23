@@ -12,6 +12,7 @@ export interface LeaderboardOptions {
   timePeriod?: "" | "week" | "month";
   trial?: boolean;
   badgeFilter?: boolean;
+  limit?: number;
 }
 
 /** Props for the Leaderboard component */
@@ -29,7 +30,6 @@ export interface LeaderboardProps extends LeaderboardOptions {
   badge_icon?: string;
   style?: React.CSSProperties;
 }
-
 
 /** Response format for the leaderboard API */
 export interface LeaderboardResponse {
@@ -69,7 +69,7 @@ export interface Client {
   avatar: string;
   background: string;
   is_hidden: boolean;
-};
+}
 
 /** Props for the ClientList component */
 export interface ClientListProps {
@@ -106,10 +106,10 @@ export interface ClientProfileProps {
   containerClassName?: string;
   bannerClassName?: string;
   avatarClassName?: string;
-  nameContainerClassName?: string;
+  leaderboardClassName?: string;
   nameClassName?: string;
   userListClassName?: string;
   userContainerClassName?: string;
   userClassName?: string;
   style?: React.CSSProperties;
-};
+}

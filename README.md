@@ -43,6 +43,9 @@ Test live now in <a href='https://tribe-api-wrapper.vercel.app/'>storybook</a>
   - [Using the `ClientCardSM` Component](#using-the-clientcardsm-component)
     - [TypeScript](#typescript-5)
     - [JavaScript](#javascript-5)
+  - [Using the `ClientProfile` Component](#using-the-clientprofile-component)
+    - [TypeScript](#typescript-6)
+    - [JavaScript](#javascript-6)
 - [API Docs](#api-docs)
   - [Functions API Docs](#functions-api-docs)
   - [Component API Docs](#component-api-docs)
@@ -203,6 +206,7 @@ export default function Home() {
           timePeriod="week"
           trial={true}
           badgeFilter={false}
+          limit={10}
           className="custom-leaderboard"
           errorClassName="custom-error"
           loadingClassName="custom-loading"
@@ -234,6 +238,7 @@ export default function Home() {
           timePeriod="week"
           trial={true}
           badgeFilter={false}
+          limit={10}
           className="custom-leaderboard"
           errorClassName="custom-error"
           loadingClassName="custom-loading"
@@ -402,6 +407,44 @@ export default function Home() {
 }
 ```
 
+### Using the `ClientProfile` Component
+
+#### TypeScript
+```tsx
+import { ClientProfile } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <ClientProfile
+      clientId="example-client-id"
+      containerClassName="custom-container"
+      bannerClassName="custom-banner"
+      avatarClassName="custom-avatar"
+      leaderboardClassName="custom-leaderboard"
+      style={{ boxShadow: '0 0 5px rgba(0,0,0,0.1)' }}
+    />
+  );
+}
+```
+
+#### JavaScript
+```jsx
+import { ClientProfile } from 'tribe-api-wrapper';
+
+export default function Home() {
+  return (
+    <ClientProfile
+      clientId="example-client-id"
+      containerClassName="custom-container"
+      bannerClassName="custom-banner"
+      avatarClassName="custom-avatar"
+      leaderboardClassName="custom-leaderboard"
+      style={{ boxShadow: '0 0 5px rgba(0,0,0,0.1)' }}
+    />
+  );
+}
+```
+
 ## API Docs
 
 ### Functions API Docs
@@ -419,7 +462,8 @@ export default function Home() {
       - <code>client</code>: (Required)<br>
       - <code>timePeriod</code>: Options <code>'week'</code>, <code>'month'</code>, <code>'all'</code>. <strong>Default</strong>: <code>'all'</code> (Optional)<br>
       - <code>trial</code>: <strong>Default</strong>: true (Optional)<br>
-      - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)
+      - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)<br>
+      - <code>limit</code>: <strong>Default</strong>: 20 (Optional)
     </td>
   </tr>
   <tr>
@@ -454,6 +498,7 @@ export default function Home() {
       - <code>timePeriod</code>: Options <code>'week'</code>, <code>'month'</code>, <code>'all'</code>. <strong>Default</strong>: <code>'all'</code> (Optional)<br>
       - <code>trial</code>: <strong>Default</strong>: true (Optional)<br>
       - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)<br>
+      - <code>limit</code>: <strong>Default</strong>: 20 (Optional)<br>
       - <code>className</code>, <code>errorClassName</code>, <code>loadingClassName</code>, <code>tableClassName</code>, <code>headerClassName</code>, <code>rowClassName</code>, <code>badgeClassName</code>, <code>titleClassName</code>, <code>textClassName</code> (Optional)<br>
       - <code>badge_icon</code>: String representing the badge icon, can be a URL to an image (e.g., SVG, PNG, GIF), a local image path, or a text string. (Optional)<br>
       - <code>style</code>: Custom inline styles (Optional)
@@ -492,6 +537,18 @@ export default function Home() {
       - <code>clientId</code>: Client ID to fetch client data. (Required)<br>
       - <code>cardClassName</code>, <code>bannerClassName</code>, <code>avatarClassName</code>, <code>nameClassName</code>: CSS class names. (Optional).<br>
       - <code>style</code>: Inline styles for the card container. (Optional).
+    </td>
+  </tr>
+  <tr>
+    <td><code>ClientProfile</code></td>
+    <td>Renders client profile and a leaderboard.</td>
+    <td>
+      - <code>clientId</code>: Client ID to fetch client data. (Required)<br>
+      - <code>containerClassName</code>: CSS class for the main container. (Optional)<br>
+      - <code>bannerClassName</code>: CSS class for the banner. (Optional)<br>
+      - <code>avatarClassName</code>: CSS class for the avatar. (Optional)<br>
+      - <code>leaderboardClassName</code>: CSS class for the leaderboard container. (Optional)<br>
+      - <code>style</code>: Inline styles for the main container. (Optional).
     </td>
   </tr>
 </table>

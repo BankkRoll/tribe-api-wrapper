@@ -1,15 +1,30 @@
 // index.ts
-import axios, { AxiosError } from 'axios';
-import { LeaderboardResponse, ClientListResponse, PublicClientUserListResponse, LeaderboardOptions, ErrorResponse } from './types';
-export * from './types';
-export { Leaderboard, ClientList, UserList, ClientCardLG, ClientCardSM } from './components'; 
+import axios, { AxiosError } from "axios";
+import {
+  LeaderboardResponse,
+  ClientListResponse,
+  PublicClientUserListResponse,
+  LeaderboardOptions,
+  ErrorResponse,
+} from "./types";
+export * from "./types";
+export {
+  Leaderboard,
+  ClientList,
+  UserList,
+  ClientCardLG,
+  ClientCardSM,
+} from "./components";
 
-/** 
+/**
  * Base URLs for the API endpoints.
  */
-const BASE_URL = 'https://tribe-api-wrapper.bankkroll.repl.co/leaderboard-ranking?client=';
-const CLIENT_LIST_URL = 'https://tribe-api-wrapper.bankkroll.repl.co/client-list/';
-const PUBLIC_CLIENT_USER_LIST_URL = 'https://tribe-api-wrapper.bankkroll.repl.co/public-client-user-list?client=';
+const BASE_URL =
+  "https://tribe-api-wrapper.bankkroll.repl.co/leaderboard-ranking?client=";
+const CLIENT_LIST_URL =
+  "https://tribe-api-wrapper.bankkroll.repl.co/client-list/";
+const PUBLIC_CLIENT_USER_LIST_URL =
+  "https://tribe-api-wrapper.bankkroll.repl.co/public-client-user-list?client=";
 
 /**
  * Custom Error class for validation errors.
@@ -17,7 +32,7 @@ const PUBLIC_CLIENT_USER_LIST_URL = 'https://tribe-api-wrapper.bankkroll.repl.co
 class ValidationError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'ValidationError';
+    this.name = "ValidationError";
   }
 }
 
@@ -27,7 +42,7 @@ class ValidationError extends Error {
 class ApiError extends Error {
   constructor(message: string) {
     super(message);
-    this.name = 'ApiError';
+    this.name = "ApiError";
   }
 }
 
@@ -42,14 +57,17 @@ export const getLeaderboard = async (
   options?: LeaderboardOptions
 ): Promise<LeaderboardResponse | Error> => {
   if (!client) {
-    return new ValidationError('Client parameter is required.');
+    return new ValidationError("Client parameter is required.");
   }
 
-  const { timePeriod = '', trial = true, badgeFilter = false } = options || {};
+  const { timePeriod = "", trial = true, badgeFilter = false } = options || {};
 
   // Construct the URL, always including time_period, even if it's an empty string
-  const url = `${BASE_URL}${encodeURIComponent(client)}&trial=${trial}&badge_filter=${badgeFilter}&time_period=${encodeURIComponent(timePeriod)}`;
-
+  const url = `${BASE_URL}${encodeURIComponent(
+    client
+  )}&trial=${trial}&badge_filter=${badgeFilter}&time_period=${encodeURIComponent(
+    timePeriod
+  )}`;
 
   try {
     const response = await axios.get<LeaderboardResponse>(url);
@@ -57,13 +75,14 @@ export const getLeaderboard = async (
     if (Array.isArray(response.data.data)) {
       return response.data;
     } else {
-      return new ApiError('Wrong client ID provided. Please check your client name and try again.');
+      return new ApiError(
+        "Wrong client ID provided. Please check your client name and try again."
+      );
     }
   } catch (error) {
     return handleError(error);
   }
 };
-
 
 /**
  * Fetches the list of clients.
@@ -87,26 +106,26 @@ export const getClientList = async (): Promise<ClientListResponse | Error> => {
  * @returns {Promise<PublicClientUserListResponse | Error>} A promise that resolves to the public client user list or an error.
  */
 export const getPublicClientUserList = async (
-    client: string,
-    options?: { timePeriod?: string; badgeFilter?: boolean }
-  ): Promise<PublicClientUserListResponse | Error> => {
-    if (!client) {
-      return new ValidationError('Client parameter is required.');
-    }
+  client: string,
+  options?: { timePeriod?: string; badgeFilter?: boolean }
+): Promise<PublicClientUserListResponse | Error> => {
+  if (!client) {
+    return new ValidationError("Client parameter is required.");
+  }
 
-    const { timePeriod = '', badgeFilter = false } = options || {};
+  const { timePeriod = "", badgeFilter = false } = options || {};
 
-    const url = `${PUBLIC_CLIENT_USER_LIST_URL}${encodeURIComponent(client)}${
-      timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ''
-    }&badge_filter=${badgeFilter}`;
+  const url = `${PUBLIC_CLIENT_USER_LIST_URL}${encodeURIComponent(client)}${
+    timePeriod ? `&time_period=${encodeURIComponent(timePeriod)}` : ""
+  }&badge_filter=${badgeFilter}`;
 
-    try {
-      const response = await axios.get<PublicClientUserListResponse>(url);
-      return response.data;
-    } catch (error) {
-      return handleError(error);
-    }
-  };
+  try {
+    const response = await axios.get<PublicClientUserListResponse>(url);
+    return response.data;
+  } catch (error) {
+    return handleError(error);
+  }
+};
 
 /**
  * Error handling function for API errors.
@@ -121,13 +140,17 @@ const handleError = (error: unknown): Error => {
     axiosError.response &&
     axiosError.response.data &&
     axiosError.response.data.data &&
-    axiosError.response.data.data.error === 'invalid client_name'
+    axiosError.response.data.data.error === "invalid client_name"
   ) {
-    return new ApiError('Wrong client ID provided. Please check your client name and try again.');
+    return new ApiError(
+      "Wrong client ID provided. Please check your client name and try again."
+    );
   }
 
   if (axiosError.response) {
-    return new ApiError(`Server responded with status ${axiosError.response.status}: ${axiosError.message}`);
+    return new ApiError(
+      `Server responded with status ${axiosError.response.status}: ${axiosError.message}`
+    );
   } else {
     return new ApiError(axiosError.message);
   }
