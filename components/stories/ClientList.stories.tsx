@@ -6,6 +6,7 @@ import { ClientList } from '../index';
 export default {
   title: 'Components/ClientList',
   component: ClientList,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: Story<{

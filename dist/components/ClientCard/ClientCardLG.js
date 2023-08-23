@@ -36,7 +36,7 @@ const index_1 = require("../../index");
  * @param {React.CSSProperties} [style] - Inline styles for the card container. Optional.
  * @returns A React component that renders a compact client profile card.
  */
-const ClientCardLG = ({ clientId, cardClassName = 'custom-card-className', bannerClassName = 'custom-banner-ClassName', avatarClassName = 'custom-avatar-className', style, }) => {
+const ClientCardLG = ({ clientId, cardClassName = '', bannerClassName = '', avatarClassName = '', style, }) => {
     const [client, setClient] = (0, react_1.useState)(null);
     /**
      * Fetches client card data from API

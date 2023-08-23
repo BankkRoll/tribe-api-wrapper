@@ -10,6 +10,7 @@ const index_1 = require("../index");
 exports.default = {
     title: 'Components/ClientProfile',
     component: index_1.ClientProfile,
+    tags: ['autodocs'],
 };
 const Template = (args) => react_1.default.createElement(index_1.ClientProfile, { ...args });
 exports.Default = Template.bind({});
@@ -19,14 +20,14 @@ exports.Default.args = {
 exports.CustomStyling = Template.bind({});
 exports.CustomStyling.args = {
     ...exports.Default.args,
-    containerClassName: 'custom-container-class',
-    bannerClassName: 'custom-banner-class',
-    avatarClassName: 'custom-avatar-class',
-    nameContainerClassName: 'custom-name-container-class',
-    nameClassName: 'custom-name-class',
-    userListClassName: 'custom-user-list-container-class',
-    userContainerClassName: 'custom-user-container-class',
-    userClassName: 'custom-user-name-class',
+    containerClassName: '',
+    bannerClassName: '',
+    avatarClassName: '',
+    nameContainerClassName: '',
+    nameClassName: '',
+    userListClassName: '',
+    userContainerClassName: '',
+    userClassName: '',
     style: {
         fontFamily: "'Helvetica, Arial, sans-serif",
         textAlign: 'center',

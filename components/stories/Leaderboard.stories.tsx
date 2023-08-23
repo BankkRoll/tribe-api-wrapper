@@ -8,6 +8,7 @@ import {LeaderboardProps} from '../../types';
 export default {
   title: 'Components/Leaderboard',
   component: Leaderboard,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: Story<LeaderboardProps> = (args) => <Leaderboard {...args} />;
@@ -53,15 +54,15 @@ CustomStyling.args = {
   ...Default.args,
   badge_icon: './assets/TRIBENFTCO.png',
   badgeFilter: false,
-  className: 'custom-class',
-  errorClassName: 'error-class',
-  loadingClassName: 'loading-class',
-  tableClassName: 'table-class',
-  titleClassName: 'title-class',
-  textClassName: 'text-class',
-  headerClassName: 'header-class',
-  rowClassName: 'row-class',
-  badgeClassName: 'badge-class',
+  className: '',
+  errorClassName: '',
+  loadingClassName: '',
+  tableClassName: '',
+  titleClassName: '',
+  textClassName: '',
+  headerClassName: '',
+  rowClassName: '',
+  badgeClassName: '',
   style: {
     fontFamily: "'Helvetica, Arial, sans-serif",
     textAlign: 'center',

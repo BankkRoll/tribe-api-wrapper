@@ -6,6 +6,7 @@ import { UserList, UserListProps } from '../../index';
 export default {
   title: 'Components/UserList',
   component: UserList,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: Story<UserListProps & { client: string }> = (args) => <UserList {...args} />;
@@ -18,9 +19,9 @@ Default.args = {
 export const CustomStyling = Template.bind({});
 CustomStyling.args = {
   ...Default.args,
-  containerClassName: 'custom-container-class',
-  userClassName: 'custom-user-class',
-  textClassName: 'custom-text-class',
+  containerClassName: '',
+  userClassName: '',
+  textClassName: '',
   style: {
     fontFamily: "'Helvetica, Arial, sans-serif",
     textAlign: 'center',

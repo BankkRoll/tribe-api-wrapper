@@ -10,6 +10,7 @@ const index_1 = require("../index");
 exports.default = {
     title: 'Components/ClientCardLG',
     component: index_1.ClientCardLG,
+    tags: ['autodocs'],
 };
 const Template = (args) => react_1.default.createElement(index_1.ClientCardLG, { ...args });
 exports.Default = Template.bind({});
@@ -19,10 +20,10 @@ exports.Default.args = {
 exports.CustomStyling = Template.bind({});
 exports.CustomStyling.args = {
     ...exports.Default.args,
-    cardClassName: 'custom-card-class',
-    bannerClassName: 'custom-banner-class',
-    avatarClassName: 'custom-avatar-class',
-    nameClassName: 'custom-name-class',
+    cardClassName: '',
+    bannerClassName: '',
+    avatarClassName: '',
+    nameClassName: '',
     style: {
         fontFamily: "'Helvetica, Arial, sans-serif",
         textAlign: 'center',

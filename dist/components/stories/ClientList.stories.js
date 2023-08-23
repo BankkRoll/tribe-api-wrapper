@@ -10,6 +10,7 @@ const index_1 = require("../index");
 exports.default = {
     title: 'Components/ClientList',
     component: index_1.ClientList,
+    tags: ['autodocs'],
 };
 const Template = (args) => react_1.default.createElement(index_1.ClientList, { ...args });
 exports.Default = Template.bind({});

@@ -1,6 +1,6 @@
 {
   "name": "tribe-api-wrapper",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "Custom wrapper for tribe tracking",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -21,7 +21,7 @@
   "bugs": {
     "url": "https://github.com/BankkRoll/tribe-api-wrapper/issues"
   },
-  "homepage": "https://github.com/BankkRoll/tribe-api-wrapper#readme",
+  "homepage": "https://tribe-api-wrapper.vercel.app/",
   "scripts": {
     "build": "tsc",
     "prepublishOnly": "npm run build",
@@ -46,6 +46,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.22.10",
     "@babel/preset-react": "^7.22.5",
+    "@storybook/addon-docs": "^7.3.2",
     "@storybook/addon-essentials": "^7.3.2",
     "@storybook/addon-interactions": "^7.3.2",
     "@storybook/addon-links": "^7.3.2",
@@ -57,6 +58,7 @@
     "@storybook/testing-library": "^0.2.0",
     "prop-types": "^15.8.1",
     "react-dom": "^18.2.0",
-    "storybook": "^7.3.2"
+    "storybook": "^7.3.2",
+    "storybook-docs-toc": "^1.7.0"
   }
 }

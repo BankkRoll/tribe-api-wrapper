@@ -10,6 +10,7 @@ const index_1 = require("../index");
 exports.default = {
     title: 'Components/Leaderboard',
     component: index_1.Leaderboard,
+    tags: ['autodocs'],
 };
 const Template = (args) => react_1.default.createElement(index_1.Leaderboard, { ...args });
 exports.Default = Template.bind({});
@@ -46,15 +47,15 @@ exports.CustomStyling.args = {
     ...exports.Default.args,
     badge_icon: './assets/TRIBENFTCO.png',
     badgeFilter: false,
-    className: 'custom-class',
-    errorClassName: 'error-class',
-    loadingClassName: 'loading-class',
-    tableClassName: 'table-class',
-    titleClassName: 'title-class',
-    textClassName: 'text-class',
-    headerClassName: 'header-class',
-    rowClassName: 'row-class',
-    badgeClassName: 'badge-class',
+    className: '',
+    errorClassName: '',
+    loadingClassName: '',
+    tableClassName: '',
+    titleClassName: '',
+    textClassName: '',
+    headerClassName: '',
+    rowClassName: '',
+    badgeClassName: '',
     style: {
         fontFamily: "'Helvetica, Arial, sans-serif",
         textAlign: 'center',

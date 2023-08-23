@@ -10,6 +10,7 @@ const index_1 = require("../../index");
 exports.default = {
     title: 'Components/UserList',
     component: index_1.UserList,
+    tags: ['autodocs'],
 };
 const Template = (args) => react_1.default.createElement(index_1.UserList, { ...args });
 exports.Default = Template.bind({});
@@ -19,9 +20,9 @@ exports.Default.args = {
 exports.CustomStyling = Template.bind({});
 exports.CustomStyling.args = {
     ...exports.Default.args,
-    containerClassName: 'custom-container-class',
-    userClassName: 'custom-user-class',
-    textClassName: 'custom-text-class',
+    containerClassName: '',
+    userClassName: '',
+    textClassName: '',
     style: {
         fontFamily: "'Helvetica, Arial, sans-serif",
         textAlign: 'center',

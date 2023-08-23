@@ -7,6 +7,7 @@ import { ClientCardProps } from '../../types';
 export default {
   title: 'Components/ClientCardLG',
   component: ClientCardLG,
+  tags: ['autodocs'],
 } as Meta;
 
 const Template: Story<ClientCardProps> = (args) => <ClientCardLG {...args} />;
@@ -19,10 +20,10 @@ Default.args = {
 export const CustomStyling = Template.bind({});
 CustomStyling.args = {
   ...Default.args,
-  cardClassName: 'custom-card-class',
-  bannerClassName: 'custom-banner-class',
-  avatarClassName: 'custom-avatar-class',
-  nameClassName: 'custom-name-class',
+  cardClassName: '',
+  bannerClassName: '',
+  avatarClassName: '',
+  nameClassName: '',
   style: {
     fontFamily: "'Helvetica, Arial, sans-serif",
     textAlign: 'center',
