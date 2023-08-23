@@ -2,6 +2,9 @@
 
 const preview = {
   parameters: {
+    docs: {
+      toc: true,
+    },
     backgrounds: {
       default: 'Charcoal',
       values: [
@@ -15,7 +18,6 @@ const preview = {
         {name: 'Charcoal', value: '#474747',},
         {name: 'Jet Black', value: '#2E2E2E',},
         {name: 'Pure Black', value: '#000000',}
-        
       ],
     },
     actions: { argTypesRegex: "^on[A-Z].*" },

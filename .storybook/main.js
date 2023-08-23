@@ -12,6 +12,7 @@ const config = {
     "@storybook/addon-onboarding",
     "@storybook/addon-interactions",
     "@storybook/addon-backgrounds",
+    "@storybook/addon-docs",
   ],
   framework: {
     name: '@storybook/nextjs',
