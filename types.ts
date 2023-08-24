@@ -101,6 +101,7 @@ export interface ClientCardProps {
   style?: React.CSSProperties;
 }
 
+/** Props for the client profile  */
 export interface ClientProfileProps {
   clientId: string;
   containerClassName?: string;

@@ -5,7 +5,8 @@ import { ClientProfileProps } from "../../types";
 import { Leaderboard } from "../Leaderboard";
 
 /**
- * The ClientProfile component renders a detailed profile view of a client, including a banner, avatar, and leaderboard.
+ * The ClientProfile component.
+ * Renders a detailed profile view for the given client and provides options for customization.
  * @param {string} clientId - The client ID to fetch client data. Required.
  * @param {string} [containerClassName] - CSS class for the main container. Optional.
  * @param {string} [bannerClassName] - CSS class for the banner. Optional.
@@ -15,10 +16,10 @@ import { Leaderboard } from "../Leaderboard";
  */
 export const ClientProfile: React.FC<ClientProfileProps> = ({
   clientId,
-  containerClassName = "",
-  bannerClassName = "",
-  avatarClassName = "",
-  leaderboardClassName = "",
+  containerClassName,
+  bannerClassName,
+  avatarClassName,
+  leaderboardClassName,
 }) => {
   const [client, setClient] = useState<ClientData | null>(null);
 

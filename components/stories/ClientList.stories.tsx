@@ -9,7 +9,7 @@ export default {
   tags: ["autodocs"],
 } as Meta;
 
-const Template: StoryFn = (args) => <ClientList {...args} />;
+const Template: StoryFn = (args) => <ClientList clients={[]} {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

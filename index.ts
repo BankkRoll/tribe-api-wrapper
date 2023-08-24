@@ -7,6 +7,8 @@ import {
   LeaderboardOptions,
   ErrorResponse,
 } from "./types";
+
+// Exporting types and components for external usage
 export * from "./types";
 export {
   Leaderboard,
@@ -18,16 +20,19 @@ export {
 
 /**
  * Base URLs for the API endpoints.
+ * @constant
  */
 const BASE_URL =
-  "https://tribe-api-wrapper.bankkroll.repl.co/leaderboard-ranking?client=";
+  "https://tribe-api-wrapper.bankkroll.repl.co/leaderboard-ranking?";
 const CLIENT_LIST_URL =
   "https://tribe-api-wrapper.bankkroll.repl.co/client-list/";
 const PUBLIC_CLIENT_USER_LIST_URL =
   "https://tribe-api-wrapper.bankkroll.repl.co/public-client-user-list?client=";
 
 /**
- * Custom Error class for validation errors.
+ * Represents a validation error with a custom error name.
+ * @class
+ * @extends Error
  */
 class ValidationError extends Error {
   constructor(message: string) {
@@ -37,7 +42,9 @@ class ValidationError extends Error {
 }
 
 /**
- * Custom Error class for API errors.
+ * Represents an API error with a custom error name.
+ * @class
+ * @extends Error
  */
 class ApiError extends Error {
   constructor(message: string) {
@@ -48,9 +55,16 @@ class ApiError extends Error {
 
 /**
  * Fetches the leaderboard data for the given client.
- * @param {string} client - The client ID.
+ *
+ * If the client parameter is "All", the function will return the leaderboard data for all clients.
+ *
+ * @async
+ * @function
+ * @param {string} client - The client ID or "All" to get data for all clients.
  * @param {LeaderboardOptions} [options] - An optional object containing additional parameters like time period, trial, badge filter.
- * @returns {Promise<LeaderboardResponse | Error>} A promise that resolves to the leaderboard data or an ApiError with a message 'Wrong client ID provided. Please check your client name and try again.' if the client ID is incorrect, or other errors.
+ * @returns {Promise<LeaderboardResponse | Error>} A promise that resolves to the leaderboard data or an ApiError.
+ * @throws {ValidationError} If the client parameter is missing.
+ * @throws {ApiError} If there is an error fetching the data.
  */
 export const getLeaderboard = async (
   client: string,
@@ -62,12 +76,17 @@ export const getLeaderboard = async (
 
   const { timePeriod = "", trial = true, badgeFilter = false } = options || {};
 
-  // Construct the URL, always including time_period, even if it's an empty string
-  const url = `${BASE_URL}${encodeURIComponent(
-    client
-  )}&trial=${trial}&badge_filter=${badgeFilter}&time_period=${encodeURIComponent(
-    timePeriod
-  )}`;
+  // Construct the URL, handling the special case "all"
+  const url =
+    client.toLowerCase() === "all"
+      ? `${BASE_URL}trial=${trial}&badge_filter=${badgeFilter}&time_period=${encodeURIComponent(
+          timePeriod
+        )}`
+      : `${BASE_URL}client=${encodeURIComponent(
+          client
+        )}&trial=${trial}&badge_filter=${badgeFilter}&time_period=${encodeURIComponent(
+          timePeriod
+        )}`;
 
   try {
     const response = await axios.get<LeaderboardResponse>(url);
@@ -86,6 +105,8 @@ export const getLeaderboard = async (
 
 /**
  * Fetches the list of clients.
+ * @async
+ * @function
  * @returns {Promise<ClientListResponse | Error>} A promise that resolves to the client list or an error.
  */
 export const getClientList = async (): Promise<ClientListResponse | Error> => {
@@ -99,6 +120,8 @@ export const getClientList = async (): Promise<ClientListResponse | Error> => {
 
 /**
  * Fetches the public client user list for the given client.
+ * @async
+ * @function
  * @param {string} client - The client ID.
  * @param {Object} [options] - An optional object containing additional parameters like time period and badge filter.
  * @param {string} [options.timePeriod=''] - A filter by time period ('all', 'week', or 'month').
@@ -129,6 +152,8 @@ export const getPublicClientUserList = async (
 
 /**
  * Error handling function for API errors.
+ * @function
+ * @private
  * @param {unknown} error - The error object.
  * @returns {Error} A new ApiError object with details of the error.
  */

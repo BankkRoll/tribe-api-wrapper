@@ -1,10 +1,10 @@
 // components/ClientList.tsx
 import React, { useEffect, useState } from "react";
 import { getClientList, ClientData } from "../index";
-
+import { ClientListProps } from "../types";
 /**
  * The ClientList component.
- * Renders a list of clients with all provided properties.
+ * Renders a client list for the given data and provides options for customization.
  * @param {string} [className] - CSS class for the main container. Optional.
  * @param {string} [clientClassName] - CSS class for individual client container. Optional.
  * @param {string} [avatarClassName] - CSS class for client avatar. Optional.
@@ -12,19 +12,12 @@ import { getClientList, ClientData } from "../index";
  * @param {string} [textClassName] - CSS class for text elements. Optional.
  * @param {React.CSSProperties} [style] - Inline styles for the main container. Optional.
  */
-export const ClientList: React.FC<{
-  className?: string;
-  clientClassName?: string;
-  avatarClassName?: string;
-  backgroundClassName?: string;
-  textClassName?: string;
-  style?: React.CSSProperties;
-}> = ({
-  className = "",
-  clientClassName = "",
-  avatarClassName = "",
-  backgroundClassName = "",
-  textClassName = "",
+export const ClientList: React.FC<ClientListProps> = ({
+  className,
+  clientClassName,
+  avatarClassName,
+  backgroundClassName,
+  textClassName,
   style,
 }) => {
   const [clients, setClients] = useState<ClientData[]>([]);

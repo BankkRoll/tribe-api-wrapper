@@ -14,7 +14,7 @@ const Template: StoryFn<LeaderboardProps> = (args) => <Leaderboard {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  client: "OD Labs",
+  client: "all",
 };
 
 export const Custom_Limit = Template.bind({});

@@ -11,10 +11,20 @@ First and foremost, thank you for considering contributing to tribe-api-wrapper!
 3. Install the required dependencies using `npm install`.
 4. Create a new branch for your feature or bugfix (`git checkout -b my-new-feature`).
 
+### Development Scripts
+
+You can use the following npm scripts to aid in development:
+
+- `npm run build`: Compile TypeScript files.
+- `npm run format`: Format code with Prettier.
+- `npm run storybook`: Start the Storybook development server.
+- `npm run build-storybook`: Build Storybook for static serving.
+
 ### Coding Guidelines
 
 - Write clean and well-commented code.
 - Follow the existing code style and structure.
+- Use `npm run format` to ensure code consistency.
 - Include examples/docs for any new functionality.
 
 ### Committing Changes

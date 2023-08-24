@@ -100,6 +100,9 @@ const users = await getPublicClientUserList('example-client-id', { timePeriod: '
 ## Examples
 ### Using the `getLeaderboard` Function
 
+#### Note:
+The `client` parameter is required and can be a specific client ID or the special value \"all\" to get data for all clients.
+
 #### TypeScript
 ```tsx
 import { LeaderboardResponse, getLeaderboard } from 'tribe-api-wrapper';
@@ -111,7 +114,8 @@ export default function Home() {
 
   useEffect(() => {
     async function fetchData() {
-      const data = await getLeaderboard('example-client-id', { timePeriod: 'week', trial: true, badgeFilter: false });
+      // To fetch leaderboard data for all clients, you can use 'all' as the client parameter:
+      const data = await getLeaderboard('all', { timePeriod: 'week', trial: true, badgeFilter: false });
       if (data instanceof Error) {
         setError(data.message);
       } else {
@@ -494,7 +498,7 @@ export default function Home() {
     <td><code>Leaderboard</code></td>
     <td>A React component that displays a leaderboard.</td>
     <td>
-      - <code>client</code>: (Required)<br>
+      - <code>client</code>: The client ID. Defaults to <code>"all"</code> if not provided. If the <code>client</code> prop is omitted, the component will display the leaderboard for all clients. To display the leaderboard for a specific client, you must provide the client ID. (Optional)<br>
       - <code>timePeriod</code>: Options <code>'week'</code>, <code>'month'</code>, <code>'all'</code>. <strong>Default</strong>: <code>'all'</code> (Optional)<br>
       - <code>trial</code>: <strong>Default</strong>: true (Optional)<br>
       - <code>badgeFilter</code>: <strong>Default</strong>: false (Optional)<br>
