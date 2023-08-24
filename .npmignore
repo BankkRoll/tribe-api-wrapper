@@ -1,0 +1,13 @@
+# .npmignore
+.storybook/**
+components/stories/**
+components/**/*.stories..tsx
+**/*.stories.tsx
+dist/components/stories/
+public/images/
+.babelrc.json
+package-lock.json
+CONTRIBUTING.MD
+node_modules/
+vercel.json
+storybook-static/
