@@ -5,6 +5,9 @@ const preview = {
     docs: {
       toc: true,
     },
+    toolbar: {
+      visibility: 'hidden',
+    },
     backgrounds: {
       default: 'Charcoal',
       values: [
@@ -34,4 +37,3 @@ const preview = {
 };
 
 export default preview;
-
