@@ -40,7 +40,7 @@ export const ClientCardLG: React.FC<ClientCardProps> = ({
       className={`client-card client-card-lg ${cardClassName}`}
       style={{
         ...style,
-        width: "200px",
+        width: "100%",
         border: "1px solid #ccc",
         position: "relative",
         borderRadius: "10px",
