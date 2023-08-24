@@ -10,6 +10,7 @@ This package is designed to offer an accessible and efficient interface for the 
 
 Test live now in <a href='https://tribe-api-wrapper.vercel.app/'>storybook</a>
 
+- [ ] URGENT BEING APPLIED - Fix small Bugs in "UserList" & "ClientList" Components
 - [ ] Update storybook build out
 - [ ] Fix small errors/consistency in props/options
 - [ ] Fix docs to be super efficient and explanatory
