@@ -8,13 +8,35 @@ export default {
   title: "Components/ClientCardSM",
   component: ClientCardSM,
   tags: ["autodocs"],
+  argTypes: {
+    client: {
+      control: "text",
+      description: "The client to fetch client data. Required.",
+    },
+    cardClassName: {
+      control: "text",
+      description: "CSS class for the card container. Optional.",
+    },
+    bannerClassName: {
+      control: "text",
+      description: "CSS class for the banner. Optional.",
+    },
+    avatarClassName: {
+      control: "text",
+      description: "CSS class for the avatar. Optional.",
+    },
+    style: {
+      control: "object",
+      description: "Inline styles for the card container. Optional.",
+    },
+  },
 } as Meta;
 
 const Template: StoryFn<ClientCardProps> = (args) => <ClientCardSM {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {
-  clientId: "OD Labs",
+  client: "OD Labs",
 };
 
 export const CustomStyling = Template.bind({});

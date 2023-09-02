@@ -1,4 +1,3 @@
-// components/ClientCard/ClientCardSM.tsx
 import React, { useEffect, useState } from "react";
 import { getClientList, ClientData } from "../../index";
 import { ClientCardProps } from "../../types";
@@ -6,7 +5,7 @@ import { ClientCardProps } from "../../types";
 /**
  * The ClientCardSM component
  * Renders a smaller profile card for a client and provides options for customization.
- * @param {string} clientId - The client ID to fetch client data. Required.
+ * @param {string} client - The client ID to fetch client data. Required.
  * @param {string} [cardClassName] - CSS class for the card container. Optional.
  * @param {string} [bannerClassName] - CSS class for the banner. Optional.
  * @param {string} [avatarClassName] - CSS class for the avatar. Optional.
@@ -14,13 +13,13 @@ import { ClientCardProps } from "../../types";
  * @returns A React component that renders a compact client profile card with a banner.
  */
 export const ClientCardSM: React.FC<ClientCardProps> = ({
-  clientId,
+  client,
   cardClassName,
   bannerClassName,
   avatarClassName,
   style,
 }) => {
-  const [client, setClient] = useState<ClientData | null>(null);
+  const [clientData, setClientData] = useState<ClientData | null>(null);
 
   /**
    * Fetches client card data from API
@@ -28,13 +27,13 @@ export const ClientCardSM: React.FC<ClientCardProps> = ({
   useEffect(() => {
     getClientList().then((response) => {
       if ("data" in response) {
-        const foundClient = response.data.find((c) => c.client === clientId);
-        setClient(foundClient || null);
+        const foundClient = response.data.find((c) => c.client === client);
+        setClientData(foundClient || null);
       }
     });
-  }, [clientId]);
+  }, [client]);
 
-  if (!client) return <div>Loading...</div>;
+  if (!clientData) return <div>Loading...</div>;
 
   return (
     <div
@@ -51,7 +50,7 @@ export const ClientCardSM: React.FC<ClientCardProps> = ({
         className={`client-banner ${bannerClassName}`}
         style={{
           height: "150px",
-          backgroundImage: `url(${client.background})`,
+          backgroundImage: `url(${clientData.background})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           border: "1px solid #ccc",
@@ -60,9 +59,9 @@ export const ClientCardSM: React.FC<ClientCardProps> = ({
         }}
       >
         <img
-          src={client.avatar}
+          src={clientData.avatar}
           className={`client-avatar ${avatarClassName}`}
-          alt={`${client.client} avatar`}
+          alt={`${clientData.client} avatar`}
           style={{
             width: "50px",
             borderRadius: "14px",

@@ -4,36 +4,94 @@ import { StoryFn, Meta } from "@storybook/react";
 import { Leaderboard } from "../index";
 import { LeaderboardProps } from "../../types";
 
-export default {
+// Story metadata
+const metadata: Meta = {
   title: "Components/Leaderboard",
   component: Leaderboard,
   tags: ["autodocs"],
-} as Meta;
+  argTypes: {
+    client: {
+      control: "text",
+      description: "The client to fetch client data. Required.",
+    },
+    limit: {
+      control: "number",
+      description: "The number of leaderboard entries to show. Optional.",
+    },
+    timePeriod: {
+      control: "text",
+      description:
+        'The time period for the leaderboard ("week" or "month" - DEFAULT IS ALL TIME). Optional.',
+    },
+    badge_icon: {
+      control: "text",
+      description: "The badge icon URL. Optional.",
+    },
+    badgeFilter: {
+      control: "boolean",
+      description: "Whether to filter by badge or not. Optional.",
+    },
+    className: {
+      control: "text",
+      description: "CSS class for the main container. Optional.",
+    },
+    errorClassName: {
+      control: "text",
+      description: "CSS class for the error state. Optional.",
+    },
+    loadingClassName: {
+      control: "text",
+      description: "CSS class for the loading state. Optional.",
+    },
+    tableClassName: {
+      control: "text",
+      description: "CSS class for the table. Optional.",
+    },
+    titleClassName: {
+      control: "text",
+      description: "CSS class for the title. Optional.",
+    },
+    textClassName: {
+      control: "text",
+      description: "CSS class for text elements. Optional.",
+    },
+    headerClassName: {
+      control: "text",
+      description: "CSS class for the table header. Optional.",
+    },
+    rowClassName: {
+      control: "text",
+      description: "CSS class for table rows. Optional.",
+    },
+    badgeClassName: {
+      control: "text",
+      description: "CSS class for the badge. Optional.",
+    },
+    style: {
+      control: "object",
+      description: "Inline styles for the main container. Optional.",
+    },
+  },
+};
 
+// Story template
 const Template: StoryFn<LeaderboardProps> = (args) => <Leaderboard {...args} />;
 
+// Default story
 export const Default = Template.bind({});
 Default.args = {
   client: "all",
 };
 
+// Additional stories
 export const Custom_Limit = Template.bind({});
-Custom_Limit.args = {
-  ...Default.args,
-  limit: 5,
-};
+Custom_Limit.args = { ...Default.args, limit: 5 };
 
 export const Weekly = Template.bind({});
-Weekly.args = {
-  ...Default.args,
-  timePeriod: "week",
-};
+Weekly.args = { ...Default.args, timePeriod: "week" };
 
 export const Monthly = Template.bind({});
-Monthly.args = {
-  ...Default.args,
-  timePeriod: "month",
-};
+Monthly.args = { ...Default.args, timePeriod: "month" };
 
 export const CustomBadge = Template.bind({});
 CustomBadge.args = {
@@ -43,10 +101,7 @@ CustomBadge.args = {
 };
 
 export const WithBadgeFilter = Template.bind({});
-WithBadgeFilter.args = {
-  ...Default.args,
-  badgeFilter: true,
-};
+WithBadgeFilter.args = { ...Default.args, badgeFilter: true };
 
 export const CustomStyling = Template.bind({});
 CustomStyling.args = {
@@ -76,3 +131,5 @@ CustomStyling.args = {
     background: "linear-gradient(to bottom, #f7f457, #e156e1)",
   },
 };
+
+export default metadata;

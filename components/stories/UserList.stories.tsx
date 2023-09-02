@@ -7,6 +7,28 @@ export default {
   title: "Components/UserList",
   component: UserList,
   tags: ["autodocs"],
+  argTypes: {
+    client: {
+      control: "text",
+      description: "The client to fetch client data. Required.",
+    },
+    containerClassName: {
+      control: "text",
+      description: "CSS class for the container. Optional.",
+    },
+    userClassName: {
+      control: "text",
+      description: "CSS class for individual user items. Optional.",
+    },
+    textClassName: {
+      control: "text",
+      description: "CSS class for text elements. Optional.",
+    },
+    style: {
+      control: "object",
+      description: "Inline styles for the container. Optional.",
+    },
+  },
 } as Meta;
 
 const Template: StoryFn<UserListProps & { client: string }> = (args) => (

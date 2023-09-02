@@ -1,3 +1,42 @@
+// ClientName type to list all the client names
+export type ClientName =
+  | "all"
+  | "OD Labs"
+  | "Space Riders"
+  | "Kitaro World"
+  | "Moonrunners"
+  | "Ape Reunion"
+  | "SupDucks"
+  | "Uncanny Club"
+  | "Shellz Orb"
+  | "2117 (Non-Tribe)"
+  | "Alpha Kongs Club"
+  | "Beanbag Frens (Non-Tribe)"
+  | "Bears Deluxe"
+  | "Blokpax"
+  | "Brawler Bearz"
+  | "Bushleague Media"
+  | "Chibi Dinos"
+  | "CPG (Non-Tribe)"
+  | "Degen Distillery"
+  | "DogePound"
+  | "Fat Rat Mafia (Non-Tribe)"
+  | "Fear City"
+  | "Freckle Trivia"
+  | "Gas Guzzlers"
+  | "Hero Galaxy"
+  | "Kryptoria"
+  | "Long Lost"
+  | "Noundles"
+  | "Orbies"
+  | "RDB Car Club"
+  | "Saved Souls"
+  | "Shadow Quest"
+  | "ThreadGuy"
+  | "TRIBENFT Co."
+  | "TRIBE TEST ACCOUNT"
+  | "Wild West Undead";
+
 /** Represents an individual user's leaderboard data */
 export interface LeaderboardData {
   username: string;
@@ -17,7 +56,7 @@ export interface LeaderboardOptions {
 
 /** Props for the Leaderboard component */
 export interface LeaderboardProps extends LeaderboardOptions {
-  client: string;
+  client: ClientName;
   className?: string;
   errorClassName?: string;
   loadingClassName?: string;
@@ -38,7 +77,7 @@ export interface LeaderboardResponse {
 
 /** Represents an individual client's data */
 export interface ClientData {
-  client: string;
+  client: ClientName;
   trial: boolean;
   avatar: string;
   background: string;
@@ -64,7 +103,7 @@ export interface ErrorResponse {
 
 /** Represents a client */
 export interface Client {
-  client: string;
+  client: ClientName;
   trial: boolean;
   avatar: string;
   background: string;
@@ -73,7 +112,7 @@ export interface Client {
 
 /** Props for the ClientList component */
 export interface ClientListProps {
-  clients: ClientData[];
+  clients?: ClientData[];
   className?: string;
   clientClassName?: string;
   avatarClassName?: string;
@@ -84,7 +123,6 @@ export interface ClientListProps {
 
 /** Props for the user list */
 export interface UserListProps {
-  users: string[];
   containerClassName?: string;
   userClassName?: string;
   textClassName?: string;
@@ -93,7 +131,7 @@ export interface UserListProps {
 
 /** Props for the client card */
 export interface ClientCardProps {
-  clientId: string;
+  client: ClientName;
   cardClassName?: string;
   bannerClassName?: string;
   avatarClassName?: string;
@@ -103,7 +141,7 @@ export interface ClientCardProps {
 
 /** Props for the client profile  */
 export interface ClientProfileProps {
-  clientId: string;
+  client: ClientName;
   containerClassName?: string;
   bannerClassName?: string;
   avatarClassName?: string;

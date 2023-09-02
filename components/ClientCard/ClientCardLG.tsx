@@ -1,25 +1,25 @@
-// components/ClientCard/ClientCardLG.tsx
 import React, { useEffect, useState } from "react";
 import { getClientList, ClientData } from "../../index";
 import { ClientCardProps } from "../../types";
 
 /**
- * The ClientCardSM component
- * Renders a smaller profile card for a client and provides options for customization.
+ * The ClientCardLG component
+ * Renders a larger profile card for a client and provides options for customization.
  * @param {string} client - The client ID to fetch client data. Required.
  * @param {string} [cardClassName] - CSS class for the card container. Optional.
+ * @param {string} [bannerClassName] - CSS class for the banner. Optional.
  * @param {string} [avatarClassName] - CSS class for the avatar. Optional.
  * @param {React.CSSProperties} [style] - Inline styles for the card container. Optional.
- * @returns A React component that renders a compact client profile card.
+ * @returns A React component that renders a larger client profile card.
  */
 export const ClientCardLG: React.FC<ClientCardProps> = ({
-  clientId,
+  client,
   cardClassName,
   bannerClassName,
   avatarClassName,
   style,
 }) => {
-  const [client, setClient] = useState<ClientData | null>(null);
+  const [clientData, setClientData] = useState<ClientData | null>(null);
 
   /**
    * Fetches client card data from API
@@ -27,13 +27,13 @@ export const ClientCardLG: React.FC<ClientCardProps> = ({
   useEffect(() => {
     getClientList().then((response) => {
       if ("data" in response) {
-        const foundClient = response.data.find((c) => c.client === clientId);
-        setClient(foundClient || null);
+        const foundClient = response.data.find((c) => c.client === client);
+        setClientData(foundClient || null);
       }
     });
-  }, [clientId]);
+  }, [client]);
 
-  if (!client) return <div>Loading...</div>;
+  if (!clientData) return <div>Loading...</div>;
 
   return (
     <div
@@ -50,7 +50,7 @@ export const ClientCardLG: React.FC<ClientCardProps> = ({
         className={`client-banner ${bannerClassName}`}
         style={{
           height: "300px",
-          backgroundImage: `url(${client.background})`,
+          backgroundImage: `url(${clientData.background})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           border: "2px solid #ccc",
@@ -59,9 +59,9 @@ export const ClientCardLG: React.FC<ClientCardProps> = ({
         }}
       >
         <img
-          src={client.avatar}
+          src={clientData.avatar}
           className={`client-avatar ${avatarClassName}`}
-          alt={`${client.client} avatar`}
+          alt={`${clientData.client} avatar`}
           style={{
             width: "150px",
             borderRadius: "30px",

@@ -7,9 +7,35 @@ export default {
   title: "Components/ClientList",
   component: ClientList,
   tags: ["autodocs"],
+  argTypes: {
+    className: {
+      control: "text",
+      description: "CSS class for the main container. Optional.",
+    },
+    clientClassName: {
+      control: "text",
+      description: "CSS class for individual client container. Optional.",
+    },
+    avatarClassName: {
+      control: "text",
+      description: "CSS class for client avatar. Optional.",
+    },
+    backgroundClassName: {
+      control: "text",
+      description: "CSS class for client background. Optional.",
+    },
+    textClassName: {
+      control: "text",
+      description: "CSS class for text elements. Optional.",
+    },
+    style: {
+      control: "object",
+      description: "Inline styles for the main container. Optional.",
+    },
+  },
 } as Meta;
 
-const Template: StoryFn = (args) => <ClientList clients={[]} {...args} />;
+const Template: StoryFn = (args) => <ClientList {...args} />;
 
 export const Default = Template.bind({});
 Default.args = {};

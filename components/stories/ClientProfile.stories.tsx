@@ -1,4 +1,5 @@
 // components/ClientProfile.stories.tsx
+// components/ClientProfile.stories.tsx
 import React from "react";
 import { StoryFn, Meta } from "@storybook/react";
 import { ClientProfile } from "../index";
@@ -8,6 +9,32 @@ export default {
   title: "Components/ClientProfile",
   component: ClientProfile,
   tags: ["autodocs"],
+  argTypes: {
+    clientId: {
+      control: "text",
+      description: "The client to fetch client data. Required.",
+    },
+    containerClassName: {
+      control: "text",
+      description: "CSS class for the main container. Optional.",
+    },
+    bannerClassName: {
+      control: "text",
+      description: "CSS class for the banner. Optional.",
+    },
+    avatarClassName: {
+      control: "text",
+      description: "CSS class for the avatar. Optional.",
+    },
+    leaderboardClassName: {
+      control: "text",
+      description: "CSS class for the leaderboard. Optional.",
+    },
+    style: {
+      control: "object",
+      description: "Inline styles for the main container. Optional.",
+    },
+  },
 } as Meta;
 
 const Template: StoryFn<ClientProfileProps> = (args) => (
@@ -16,7 +43,7 @@ const Template: StoryFn<ClientProfileProps> = (args) => (
 
 export const Default = Template.bind({});
 Default.args = {
-  clientId: "OD Labs",
+  client: "OD Labs",
 };
 
 export const CustomStyling = Template.bind({});

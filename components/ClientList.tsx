@@ -13,6 +13,7 @@ import { ClientListProps } from "../types";
  * @param {React.CSSProperties} [style] - Inline styles for the main container. Optional.
  */
 export const ClientList: React.FC<ClientListProps> = ({
+  clients: clientsProp,
   className,
   clientClassName,
   avatarClassName,
@@ -20,25 +21,31 @@ export const ClientList: React.FC<ClientListProps> = ({
   textClassName,
   style,
 }) => {
-  const [clients, setClients] = useState<ClientData[]>([]);
+  const [clientsState, setClients] = useState<ClientData[]>(clientsProp || []);
   const [isLoading, setIsLoading] = useState(true);
 
   /**
    * Fetches client list from API
    */
   useEffect(() => {
-    getClientList()
-      .then((response) => {
-        if ("data" in response) {
-          setClients(response.data);
+    if (!clientsProp) {
+      getClientList()
+        .then((response) => {
+          if ("data" in response) {
+            setClients(response.data);
+            setIsLoading(false);
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching client list:", error);
           setIsLoading(false);
-        }
-      })
-      .catch((error) => {
-        console.error("Error fetching client list:", error);
-        setIsLoading(false);
-      });
-  }, []);
+        });
+    } else {
+      setIsLoading(false);
+    }
+  }, [clientsProp]);
+
+  const clients = clientsProp || clientsState;
 
   if (isLoading) {
     return <div>Loading...</div>;

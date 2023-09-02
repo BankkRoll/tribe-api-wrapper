@@ -7,7 +7,7 @@ import { Leaderboard } from "../Leaderboard";
 /**
  * The ClientProfile component.
  * Renders a detailed profile view for the given client and provides options for customization.
- * @param {string} clientId - The client ID to fetch client data. Required.
+ * @param {string} client - The client ID to fetch client data. Required.
  * @param {string} [containerClassName] - CSS class for the main container. Optional.
  * @param {string} [bannerClassName] - CSS class for the banner. Optional.
  * @param {string} [avatarClassName] - CSS class for the avatar. Optional.
@@ -15,24 +15,24 @@ import { Leaderboard } from "../Leaderboard";
  * @returns A React component that renders a detailed client profile including a leaderboard.
  */
 export const ClientProfile: React.FC<ClientProfileProps> = ({
-  clientId,
+  client,
   containerClassName,
   bannerClassName,
   avatarClassName,
   leaderboardClassName,
 }) => {
-  const [client, setClient] = useState<ClientData | null>(null);
+  const [clientData, setClientData] = useState<ClientData | null>(null);
 
   useEffect(() => {
     getClientList().then((response) => {
       if ("data" in response) {
-        const foundClient = response.data.find((c) => c.client === clientId);
-        setClient(foundClient || null);
+        const foundClient = response.data.find((c) => c.client === client);
+        setClientData(foundClient || null);
       }
     });
-  }, [clientId]);
+  }, [client]);
 
-  if (!client) return <div>Loading...</div>;
+  if (!clientData) return <div>Loading...</div>;
 
   return (
     <div
@@ -43,7 +43,7 @@ export const ClientProfile: React.FC<ClientProfileProps> = ({
         className={`client-banner ${bannerClassName}`}
         style={{
           height: "300px",
-          backgroundImage: `url(${client.background})`,
+          backgroundImage: `url(${clientData.background})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           position: "relative",
@@ -51,9 +51,9 @@ export const ClientProfile: React.FC<ClientProfileProps> = ({
         }}
       >
         <img
-          src={client.avatar}
+          src={clientData.avatar}
           className={`client-avatar ${avatarClassName}`}
-          alt={`${client.client} avatar`}
+          alt={`${clientData.client} avatar`}
           style={{
             width: "150px",
             borderRadius: "75px",
@@ -69,7 +69,7 @@ export const ClientProfile: React.FC<ClientProfileProps> = ({
         className={`client-leaderboard ${leaderboardClassName}`}
         style={{ padding: "100px 20px 20px", borderRadius: "0 0 10px 10px" }}
       >
-        <Leaderboard client={clientId} />
+        <Leaderboard client={client} />
       </div>
     </div>
   );
