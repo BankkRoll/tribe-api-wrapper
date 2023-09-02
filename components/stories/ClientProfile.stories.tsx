@@ -10,7 +10,7 @@ export default {
   component: ClientProfile,
   tags: ["autodocs"],
   argTypes: {
-    clientId: {
+    client: {
       control: "text",
       description: "The client to fetch client data. Required.",
     },
