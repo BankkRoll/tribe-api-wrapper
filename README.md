@@ -10,7 +10,6 @@ This package is designed to offer an accessible and efficient interface for the 
 
 Test live now in <a href='https://tribe-api-wrapper.vercel.app/'>storybook</a>
 
-- [ ] URGENT BEING APPLIED - Fix small Bugs in "UserList" & "ClientList" Components
 - [ ] Update storybook build out
 - [ ] Fix small errors/consistency in props/options
 - [ ] Fix docs to be super efficient and explanatory
@@ -345,7 +344,7 @@ import { ClientCardLG } from 'tribe-api-wrapper';
 export default function Home() {
   return (
     <ClientCardLG
-      clientId="example-client-id"
+      client="example-client-id"
       cardClassName="custom-card-lg"
       bannerClassName="custom-banner"
       avatarClassName="custom-avatar"
@@ -363,7 +362,7 @@ import { ClientCardLG } from 'tribe-api-wrapper';
 export default function Home() {
   return (
     <ClientCardLG
-      clientId="example-client-id"
+      client="example-client-id"
       cardClassName="custom-card-lg"
       bannerClassName="custom-banner"
       avatarClassName="custom-avatar"
@@ -383,7 +382,7 @@ import { ClientCardSM } from 'tribe-api-wrapper';
 export default function Home() {
   return (
     <ClientCardSM
-      clientId="example-client-id"
+      client="example-client-id"
       cardClassName="custom-card-sm"
       bannerClassName="custom-banner"
       avatarClassName="custom-avatar"
@@ -401,7 +400,7 @@ import { ClientCardSM } from 'tribe-api-wrapper';
 export default function Home() {
   return (
     <ClientCardSM
-      clientId="example-client-id"
+      client="example-client-id"
       cardClassName="custom-card-sm"
       bannerClassName="custom-banner"
       avatarClassName="custom-avatar"
@@ -421,7 +420,7 @@ import { ClientProfile } from 'tribe-api-wrapper';
 export default function Home() {
   return (
     <ClientProfile
-      clientId="example-client-id"
+      client="example-client-id"
       containerClassName="custom-container"
       bannerClassName="custom-banner"
       avatarClassName="custom-avatar"
@@ -439,7 +438,7 @@ import { ClientProfile } from 'tribe-api-wrapper';
 export default function Home() {
   return (
     <ClientProfile
-      clientId="example-client-id"
+      client="example-client-id"
       containerClassName="custom-container"
       bannerClassName="custom-banner"
       avatarClassName="custom-avatar"
@@ -530,7 +529,7 @@ export default function Home() {
     <td><code>ClientCardLG</code></td>
     <td>Renders a larger profile card for a client.</td>
     <td>
-      - <code>clientId</code>: Client ID to fetch client data. (Required)<br>
+      - <code>client</code>: Client ID to fetch client data. (Required)<br>
       - <code>cardClassName</code>, <code>bannerClassName</code>, <code>avatarClassName</code>, <code>nameClassName</code>: CSS class names. (Optional).<br>
       - <code>style</code>: Inline styles for the card container. (Optional).
     </td>
@@ -539,7 +538,7 @@ export default function Home() {
     <td><code>ClientCardSM</code></td>
     <td>Renders a smaller profile card for a client, including the banner.</td>
     <td>
-      - <code>clientId</code>: Client ID to fetch client data. (Required)<br>
+      - <code>client</code>: Client ID to fetch client data. (Required)<br>
       - <code>cardClassName</code>, <code>bannerClassName</code>, <code>avatarClassName</code>, <code>nameClassName</code>: CSS class names. (Optional).<br>
       - <code>style</code>: Inline styles for the card container. (Optional).
     </td>
@@ -548,7 +547,7 @@ export default function Home() {
     <td><code>ClientProfile</code></td>
     <td>Renders client profile and a leaderboard.</td>
     <td>
-      - <code>clientId</code>: Client ID to fetch client data. (Required)<br>
+      - <code>client</code>: Client ID to fetch client data. (Required)<br>
       - <code>containerClassName</code>: CSS class for the main container. (Optional)<br>
       - <code>bannerClassName</code>: CSS class for the banner. (Optional)<br>
       - <code>avatarClassName</code>: CSS class for the avatar. (Optional)<br>
