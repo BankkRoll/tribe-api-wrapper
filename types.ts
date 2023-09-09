@@ -27,6 +27,7 @@ export type ClientName =
   | "Hero Galaxy"
   | "Kryptoria"
   | "Long Lost"
+  | "m00m"
   | "Noundles"
   | "Orbies"
   | "RDB Car Club"
